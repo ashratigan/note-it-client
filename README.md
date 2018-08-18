@@ -1,4 +1,4 @@
-# Bucket List 
+# Note It
 
 ## Overview
 This is the front-end for Note It, my capstone full-stack project as part of GA's web development immersive. I also created the the back end for this site. This is a single page application that allows people to sign up and make notes. Users can create, update, delete, and view their notes. I began this project by creating the back end, and then linked the front end to the API that I had created. 

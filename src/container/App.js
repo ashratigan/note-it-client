@@ -9,6 +9,7 @@ import '../styles/App.css';
 // import Info from '../components/Info.js'
 
 import Loginscreen from '../components/Loginscreen'
+import uploadScreen from '../components/UploadScreen'
 // import Notescreen from '../components/Notescreen'
 
 
@@ -20,8 +21,8 @@ class App extends Component {
     super(props)
     this.state = {
       loginPage:[],
-      notePage:[],
-      // uploadScreen:[],
+      // notePage:[],
+      uploadScreen:[]
       // quote: '',
       // quoteAuthor: '',
       // notesAPI: []
@@ -73,7 +74,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.loginPage}
-        {this.state.notePage}
+        {this.state.uploadScreen}
         {/* <Header /> */}
 
       </div>

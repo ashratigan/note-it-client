@@ -27,7 +27,16 @@ class NoteScreen extends Component {
           })
         })
 
-    axios.get('http://localhost:4741/notes')
+
+      axios({
+        method: 'get',
+        url: 'http://localhost:4741/notes',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token token=' + this.props.credentials.state.token
+        }
+      })    
+    // axios.get('http://localhost:4741/notes')
         .then(data => {
           this.setState({
             notesAPI: data.data.notes

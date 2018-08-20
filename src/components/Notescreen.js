@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import Board from '../components/Board.js'
-import Info from '../components/Info.js'
+import Board from './Board.js'
+import Info from './Info.js'
+import {Header } from './Header.js'
 import axios from 'axios';
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import Login from './Login';
 // import Register from './Register';
 
-class NoteScreen extends Component {
+export class  NoteScreen extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -27,8 +28,11 @@ class NoteScreen extends Component {
           })
         })
 
-
+        // console.log(this)
+        // console.log(this.props)
+        // console.log(this.props.credentials)
       axios({
+      
         method: 'get',
         url: 'http://localhost:4741/notes',
         headers: {
@@ -48,7 +52,13 @@ class NoteScreen extends Component {
   render() {
     return (
       <div className="Notescreen">
-      <div className="Info">
+        <div className="Header">
+          <Header 
+            appContext={this.props.appContext}
+            credentials={this.props.credentials}
+          />
+        </div>
+        <div className="Info">
           <Info quote={this.state.quote}
                 quoteAuthor={this.state.quoteAuthor}/>
         </div>
@@ -61,4 +71,4 @@ class NoteScreen extends Component {
   }
 }
 
-export default NoteScreen;
+// export default NoteScreen;

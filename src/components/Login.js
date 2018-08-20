@@ -5,6 +5,8 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {UploadScreen} from './UploadScreen';
+import {NoteScreen} from './Notescreen'
+// import {Header} from './Header.js'
 
 class Login extends Component {
 constructor(props){
@@ -55,6 +57,18 @@ constructor(props){
         loginPage: [],
         uploadScreen: uploadScreen
         })
+
+        var noteScreen=[];
+        noteScreen.push(
+            <NoteScreen
+              credentials={self}
+              appContext={self.props.appContext}
+            />)
+        self.props.appContext.setState({
+            loginPage: [],
+            noteScreen: noteScreen
+            })
+
     // self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
     }
     else if(response.status === 204){

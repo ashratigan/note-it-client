@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NoteScreen from './Notescreen'
+import {NoteScreen} from './Notescreen'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 

@@ -1,8 +1,13 @@
 .Note-div {
     width: 300px;
     background: lightblue;
-    margin: 10px;
+    margin: 15px;
     min-height: 300px;
     min-width: 200px;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.delete {
+    text-align: right;
+    margin: 10px;
 }

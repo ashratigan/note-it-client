@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
-
 import axios from 'axios';
 // import { BrowserRouter } from 'react-router-dom'
 
@@ -15,12 +10,16 @@ import Info from '../components/Info.js'
 
 import Loginscreen from '../components/Loginscreen'
 
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loginPage:[],
-      uploadScreen:[],
+      // uploadScreen:[],
       quote: '',
       quoteAuthor: '',
       notesAPI: [],
@@ -66,7 +65,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.loginPage}
-        {this.state.uploadScreen}
+        {/* {this.state.uploadScreen} */}
         <Header />
         <div className="Info">
           <Info quote={this.state.quote}

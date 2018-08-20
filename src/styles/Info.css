@@ -1,0 +1,13 @@
+.Info-div {
+    background: lightcyan;
+}
+.Quote {
+    text-align: left;
+    margin: 0 auto;
+    padding: 0 50px 10px 50px;
+}
+
+p {
+    margin: 0;
+    padding: 10px;
+}

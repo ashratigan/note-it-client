@@ -1,18 +1,56 @@
 import React, { Component } from 'react';
-import logo from '../images/logo.svg';
 import '../styles/App.css';
 
+import axios from 'axios';
+// import { BrowserRouter } from 'react-router-dom'
+
+import Header from '../components/Header.js'
+import Board from '../components/Board.js'
+
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      quote: '',
+      quoteAuthor: '',
+      notesAPI: [],
+      // notes: [{
+      //     title: 'note',
+      //     content: 'notes'
+      //   },
+      //   {
+      //     title: 'note 2',
+      //     content: 'more notes'
+      //   }
+      // ]
+    }
+  }
+
+  componentDidMount() {
+    axios.get('https://talaikis.com/api/quotes/random/')
+        .then(data => {
+          const quoteData = data.data
+          this.setState({
+            quote: quoteData.quote,
+            quoteAuthor: quoteData.author
+          })
+        })
+
+    axios.get('http://localhost:4741/notes')
+        .then(data => {
+          this.setState({
+            notesAPI: data.data.notes
+          })
+        })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <Header quote={this.state.quote}
+                quoteAuthor={this.state.quoteAuthor}/>
+        <Board notesAPI={this.state.notesAPI}/>
+        {/* <Board notes={this.state.notes}/> */}
       </div>
     );
   }

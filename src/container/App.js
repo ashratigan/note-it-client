@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import Header from '../components/Header.js'
 import Board from '../components/Board.js'
+import Info from '../components/Info.js'
 
 class App extends Component {
   constructor(props) {
@@ -47,10 +48,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Header quote={this.state.quote}
+        <Header />
+        <div className="Info">
+          <Info quote={this.state.quote}
                 quoteAuthor={this.state.quoteAuthor}/>
-        <Board notesAPI={this.state.notesAPI}/>
-        {/* <Board notes={this.state.notes}/> */}
+        </div>
+        <div className="Board">
+          <Board notesAPI={this.state.notesAPI}/>
+          {/* <Board notes={this.state.notes}/> */}
+        </div>
       </div>
     );
   }

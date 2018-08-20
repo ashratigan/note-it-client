@@ -5,17 +5,17 @@ import Login from './Login';
 import Register from './Register';
 
 class Loginscreen extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      username:'',
-      password:'',
-      loginscreen:[],
-      loginmessage:'',
-      buttonLabel:'Register',
-      isLogin:true
+    constructor(props){
+        super(props);
+        this.state={
+        username:'',
+        password:'',
+        loginscreen:[],
+        loginmessage:'',
+        buttonLabel:'Register',
+        isLogin:true
+        }
     }
-  }
   componentWillMount(){
     var loginscreen=[];
     loginscreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>);
@@ -61,7 +61,7 @@ class Loginscreen extends Component {
           {this.state.loginmessage}
           <MuiThemeProvider>
             <div>
-               <RaisedButton label={this.state.buttonLabel} primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+               <RaisedButton label={this.state.buttonLabel} primary={true} onClick={(event) => this.handleClick(event)}/>
            </div>
           </MuiThemeProvider>
         </div>
@@ -69,7 +69,5 @@ class Loginscreen extends Component {
     );
   }
 }
-const style = {
-  margin: 15,
-};
+
 export default Loginscreen;

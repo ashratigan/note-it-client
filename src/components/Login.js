@@ -4,6 +4,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import {UploadScreen} from './UploadScreen';
+
 class Login extends Component {
 constructor(props){
   super(props);
@@ -14,6 +16,7 @@ constructor(props){
  }
 
  handleClick(event){
+    var self = this;
     var apiBaseUrl = "http://localhost:4741/";
     // var self = this;
     var payload = {
@@ -34,10 +37,24 @@ constructor(props){
     // axios.post(apiBaseUrl+'sign-in', payload)
     .then(function (response) {
     console.log(response);
+    console.log(response.data.user.token);
     if(response.status === 200){
     console.log("Login successfull");
-    // var uploadScreen=[];
-    // uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
+    self.setState({
+        token: response.data.user.token,
+        id: response.data.user.id
+    })
+    var uploadScreen=[];
+    // uploadScreen.push(<uploadScreen appContext={self.props.appContext}/>)
+    uploadScreen.push(
+        <UploadScreen
+          credentials={self}
+          appContext={self.props.appContext}
+        />)
+    self.props.appContext.setState({
+        loginPage: [],
+        uploadScreen: uploadScreen
+        })
     // self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
     }
     else if(response.status === 204){

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 
-import axios from 'axios';
+// import axios from 'axios';
 // import { BrowserRouter } from 'react-router-dom'
 
-import Header from '../components/Header.js'
-import Board from '../components/Board.js'
-import Info from '../components/Info.js'
+// import Header from '../components/Header.js'
+// import Board from '../components/Board.js'
+// import Info from '../components/Info.js'
 
 import Loginscreen from '../components/Loginscreen'
+// import Notescreen from '../components/Notescreen'
 
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -19,10 +20,11 @@ class App extends Component {
     super(props)
     this.state = {
       loginPage:[],
+      notePage:[],
       // uploadScreen:[],
-      quote: '',
-      quoteAuthor: '',
-      notesAPI: [],
+      // quote: '',
+      // quoteAuthor: '',
+      // notesAPI: []
       // notes: [{
       //     title: 'note',
       //     content: 'notes'
@@ -41,40 +43,39 @@ class App extends Component {
     this.setState({
                   loginPage:loginPage
                     })
+
+  //   var notePage =[];
+  //   notePage.push(<Notescreen parentContext={this}/>);
+  //   this.setState({
+  //                 notePage:notePage
+  //                   })
   }
 
-  componentDidMount() {
-    axios.get('https://talaikis.com/api/quotes/random/')
-        .then(data => {
-          const quoteData = data.data
-          this.setState({
-            quote: quoteData.quote,
-            quoteAuthor: quoteData.author
-          })
-        })
+  // componentDidMount() {
+  //   axios.get('https://talaikis.com/api/quotes/random/')
+  //       .then(data => {
+  //         const quoteData = data.data
+  //         this.setState({
+  //           quote: quoteData.quote,
+  //           quoteAuthor: quoteData.author
+  //         })
+  //       })
 
-    axios.get('http://localhost:4741/notes')
-        .then(data => {
-          this.setState({
-            notesAPI: data.data.notes
-          })
-        })
-  }
+  //   axios.get('http://localhost:4741/notes')
+  //       .then(data => {
+  //         this.setState({
+  //           notesAPI: data.data.notes
+  //         })
+  //       })
+  // }
 
   render() {
     return (
       <div className="App">
         {this.state.loginPage}
-        {/* {this.state.uploadScreen} */}
-        <Header />
-        <div className="Info">
-          <Info quote={this.state.quote}
-                quoteAuthor={this.state.quoteAuthor}/>
-        </div>
-        <div className="Board">
-          <Board notesAPI={this.state.notesAPI}/>
-          {/* <Board notes={this.state.notes}/> */}
-        </div>
+        {this.state.notePage}
+        {/* <Header /> */}
+
       </div>
     );
   }

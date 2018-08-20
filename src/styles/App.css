@@ -8,9 +8,11 @@
   border: 5px solid #333;
   border-radius: 5%;
   /* background-image: url("../images/board.jpg"); */
+  background-image: url("../images/fabric.jpg");
   /* background-image: url("https://images.unsplash.com/photo-1486246772917-8947d0f7f541?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=eed508aad06104fb406c1b3d67941a4b&auto=format&fit=crop&w=500&q=60"); */
   /* background-image: url("https://images.unsplash.com/photo-1529690052479-844e385129cb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b6e63cb952292d413ce60a45d77ab825&auto=format&fit=crop&w=500&q=60"); */
-  background-image: url("https://s7d4.scene7.com/is/image/LoomDecor/F208-02-Pale-Aqua-Delicate-Floral-Linen-Fabric?$M2CategoryThumbV2$&cropN=0.25,0.25,0.5,0.5&&wid=700&hei=700&cache=on,on");
+  /* background-image: url("https://s7d4.scene7.com/is/image/LoomDecor/F208-02-Pale-Aqua-Delicate-Floral-Linen-Fabric?$M2CategoryThumbV2$&cropN=0.25,0.25,0.5,0.5&&wid=700&hei=700&cache=on,on"); */
+  /* background-image: url("https://www.brickhousefabrics.com/mm5/graphics/00000001/Indienne-bl-white-zzz-b-1000nnn.jpg"); */
   /* background-image: url("https://dabigkahuna.net/wp-content/uploads/blue-flowered-wallpaper-15-best-wallpaper-images-on-pinterest-flower-wallpaper.jpg"); */
   /* background-size: 100% 100%; */
   background-size: 100% 100%;

@@ -1,75 +1,55 @@
 import React, { Component } from 'react';
+import Board from '../components/Board.js'
+import Info from '../components/Info.js'
+import axios from 'axios';
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import Login from './Login';
 // import Register from './Register';
 
-class Notescreen extends Component {
+class NoteScreen extends Component {
   constructor(props){
     super(props);
     this.state={
-      username:'',
-      password:'',
-      Notescreen:[],
-      loginmessage:'',
-      buttonLabel:'Register',
-      isLogin:true
+        quote: '',
+        quoteAuthor: '',
+        notesAPI: []
     }
-  }
-  componentWillMount(){
-    var Notescreen=[];
-    Notescreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>);
-    var loginmessage = "Not registered yet, Register Now";
-    this.setState({
-                  Notescreen:Notescreen,
-                  loginmessage:loginmessage
-                    })
   }
 
-  handleClick(event){
-    // console.log("event",event);
-    var loginmessage;
-    if(this.state.isLogin){
-      var Notescreen=[];
-      Notescreen.push(<Register parentContext={this}/>);
-      loginmessage = "Already registered. Go to Login";
-      this.setState({
-                     Notescreen:Notescreen,
-                     loginmessage:loginmessage,
-                     buttonLabel:"Login",
-                     isLogin:false
-                   })
-    }
-    else{
-      var Notescreen=[];
-      Notescreen.push(<Login parentContext={this}/>);
-      loginmessage = "Not Registered yet. Go to registration";
-      this.setState({
-                     Notescreen:Notescreen,
-                     loginmessage:loginmessage,
-                     buttonLabel:"Register",
-                     isLogin:true
-                   })
-    }
+  componentDidMount() {
+    axios.get('https://talaikis.com/api/quotes/random/')
+        .then(data => {
+          const quoteData = data.data
+          this.setState({
+            quote: quoteData.quote,
+            quoteAuthor: quoteData.author
+          })
+        })
+
+    axios.get('http://localhost:4741/notes')
+        .then(data => {
+          this.setState({
+            notesAPI: data.data.notes
+          })
+        })
   }
+
 
   render() {
     return (
       <div className="Notescreen">
-        {this.state.Notescreen}
-        <div>
-          {this.state.loginmessage}
-          <MuiThemeProvider>
-            <div>
-               <RaisedButton label={this.state.buttonLabel} primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-           </div>
-          </MuiThemeProvider>
+      <div className="Info">
+          <Info quote={this.state.quote}
+                quoteAuthor={this.state.quoteAuthor}/>
+        </div>
+        <div className="Board">
+          <Board notesAPI={this.state.notesAPI}/>
+          {/* <Board notes={this.state.notes}/> */}
         </div>
       </div>
     );
   }
 }
-const style = {
-  margin: 15,
-};
-export default Notescreen;
+
+export default NoteScreen;

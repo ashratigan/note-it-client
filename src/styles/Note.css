@@ -1,10 +1,15 @@
 .Note-div {
     width: 300px;
-    background: lightblue;
+    /* background-image: url("https://png2.kisspng.com/sh/962b10047e453c25a0eb4c6ed29939de/L0KzQYm3VMA1N5x9j5H0aYP2gLBuTgBwe6UygeY2bnB3dX73ggBmel54jNtsa3X1PcT7ifNsgV5zhAZucz3zf8T7Tfl1NZ90jNc2NXHmRYi7VclmOWQ7fag3OEC3QYS5VsUyPWM3UKoEOEG6SYO5Vb5xdpg=/kisspng-post-it-note-paper-sticker-sticky-notes-post-it-note-5ac57459e136e6.8041326515228898179225.png"); */
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/e5/Post-it-note-transparent.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /* background: lightblue; */
     margin: 15px;
+    padding: 35px 37px 50px 35px;
     min-height: 300px;
     min-width: 200px;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    /* box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; */
 }
 
 .delete {

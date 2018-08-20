@@ -16,20 +16,31 @@ constructor(props){
  handleClick(event){
     var apiBaseUrl = "http://localhost:4741/";
     // var self = this;
-    var payload={
-    "email":this.state.username,
-    "password":this.state.password
+    var payload = {
+        url: apiBaseUrl+'sign-in',
+        method: 'POST',
+        data: {
+            credentials: {
+                email: this.state.username,
+                password: this.state.password
+            }
+        },
+        header: {
+            "Content-Type": "application/json"
+        }
+
     }
-    axios.post(apiBaseUrl+'sign-in', payload)
+    axios(payload)
+    // axios.post(apiBaseUrl+'sign-in', payload)
     .then(function (response) {
     console.log(response);
-    if(response.data.code === 200){
+    if(response.status === 200){
     console.log("Login successfull");
     // var uploadScreen=[];
     // uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
     // self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
     }
-    else if(response.data.code === 204){
+    else if(response.status === 204){
     console.log("Username password do not match");
     alert("username password do not match")
     }

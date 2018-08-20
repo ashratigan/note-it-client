@@ -7,7 +7,6 @@ const Note = props => {
   
 
   return (
-    
     <Draggable
       handle=".Note-div"
       defaultPosition={{x: 0, y: 0}}
@@ -17,6 +16,7 @@ const Note = props => {
       onDrag={this.handleDrag}
       onStop={this.handleStop}>
       <div className="Note-div">
+        <div class="delete">X</div>
         <p>{props.title}</p>
         <p>{props.content}</p>
         {/* <div>{props.notesAPI}</div> */}

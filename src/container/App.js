@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 import axios from 'axios';
 // import { BrowserRouter } from 'react-router-dom'
 
@@ -8,10 +13,14 @@ import Header from '../components/Header.js'
 import Board from '../components/Board.js'
 import Info from '../components/Info.js'
 
+import Loginscreen from '../components/Loginscreen'
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      loginPage:[],
+      uploadScreen:[],
       quote: '',
       quoteAuthor: '',
       notesAPI: [],
@@ -25,6 +34,14 @@ class App extends Component {
       //   }
       // ]
     }
+  }
+
+  componentWillMount(){
+    var loginPage =[];
+    loginPage.push(<Loginscreen parentContext={this}/>);
+    this.setState({
+                  loginPage:loginPage
+                    })
   }
 
   componentDidMount() {
@@ -48,6 +65,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {this.state.loginPage}
+        {this.state.uploadScreen}
         <Header />
         <div className="Info">
           <Info quote={this.state.quote}

@@ -26,9 +26,9 @@ import '../styles/Header.css'
   
 
   newNote() {
-    this.state={
-      notes: []
-    }
+    // this.state={
+    //   notes: []
+    // }
     // let self = this;
     console.log(this)
     console.log(this.props)

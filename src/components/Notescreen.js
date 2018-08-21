@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Board from './Board.js'
 import Info from './Info.js'
-import {Header } from './Header.js'
+import { Header } from './Header.js'
 import axios from 'axios';
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import RaisedButton from 'material-ui/RaisedButton';
@@ -28,17 +28,23 @@ export class  NoteScreen extends Component {
           })
         })
 
-        // console.log(this)
-        // console.log(this.props)
+        console.log(this)
+        console.log(this.props.credentials.state.tokenn)
+        console.log(this.state)
         // console.log(this.props.credentials)
       axios({
-      
         method: 'get',
         url: 'http://localhost:4741/notes',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Token token=' + this.props.credentials.state.token
-        }
+        },
+      //   data: {
+      //     note: {
+      //         title: this.state.title,
+      //         content: this.state.conetnt
+      //     }
+      // },
       })    
     // axios.get('http://localhost:4741/notes')
         .then(data => {

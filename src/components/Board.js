@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Board.css'
 
-import Note from './Note.js'
+import { Note } from './Note.js'
 
 const Board = props => {
     // need to display an array

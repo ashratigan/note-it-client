@@ -9,7 +9,7 @@ import '../styles/App.css';
 // import Info from '../components/Info.js'
 
 import Loginscreen from '../components/Loginscreen'
-import uploadScreen from '../components/UploadScreen'
+// import uploadScreen from '../components/UploadScreen'
 // import Notescreen from '../components/Notescreen'
 
 

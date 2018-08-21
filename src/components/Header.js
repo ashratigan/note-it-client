@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
 import '../styles/Header.css'
 import Loginscreen from '../components/Loginscreen'
 
@@ -16,10 +17,27 @@ import Loginscreen from '../components/Loginscreen'
   constructor(props){
     super(props);
     this.state={
-      notesAPI: []
+      notesAPI: [],
+      modalIsOpen: false
     }
     this.newNote = this.newNote.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
   }
 
   
@@ -44,20 +62,20 @@ import Loginscreen from '../components/Loginscreen'
       //     notesAPI: data.data.notes
       //   })
       // })
-      axios({
+      // axios({
       
-        method: 'get',
-        url: 'http://localhost:4741/notes',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Token token=' + this.props.credentials.state.token
-        }
-      })    
-        .then(data => {
-          this.setState({
-            notesAPI: data.data.notes
-          })
-        })
+      //   method: 'get',
+      //   url: 'http://localhost:4741/notes',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': 'Token token=' + this.props.credentials.state.token
+      //   }
+      // })    
+      //   .then(data => {
+      //     this.setState({
+      //       notesAPI: data.data.notes
+      //     })
+      //   })
   }
   handleSignOut() {
     let self = this;
@@ -83,6 +101,23 @@ import Loginscreen from '../components/Loginscreen'
     })
   }
   
+  changePassword() {
+    let self = this;
+    axios({
+      method: 'patch',
+      url: 'http://localhost:4741/change-password',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token token=' + this.props.credentials.state.token
+      },
+      // data: {
+      //   "passwords": {
+      //     "old": "",
+      //     "new": ""
+      //   }
+      // }
+    })
+  }
   
 
   render() {
@@ -91,6 +126,23 @@ import Loginscreen from '../components/Loginscreen'
         <p>Header</p>
         <button id="newNote" onClick={this.newNote}>New note</button>
         <button onClick={this.handleSignOut}>Sign Out</button>
+        <button onClick={this.openModal}>Change Password</button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          contentLabel="Example Modal"
+        >
+          <button onClick={this.closeModal}>X</button>
+          <h2 ref={subtitle => this.subtitle = subtitle}>Change Password</h2>
+          <form id="change-password-form">
+            <input type="password" name="passwords[old]" placeholder="Old Password" />
+            <br />
+            <input type="password" name="passwords[new]" placeholder="New Password" />
+            <br />
+            <button type="submit" class="btn btn-default">Change Password</button>
+          </form>
+        </Modal>
       </div>
     );
   }

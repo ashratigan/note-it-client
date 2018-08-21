@@ -57,11 +57,7 @@ import Loginscreen from '../components/Loginscreen'
         }
       }
     })    
-      // .then(data => {
-      //   this.setState({
-      //     notesAPI: data.data.notes
-      //   })
-      // })
+
       // axios({
       
       //   method: 'get',
@@ -71,11 +67,32 @@ import Loginscreen from '../components/Loginscreen'
       //     'Authorization': 'Token token=' + this.props.credentials.state.token
       //   }
       // })    
-      //   .then(data => {
-      //     this.setState({
-      //       notesAPI: data.data.notes
-      //     })
+      
+        .then(data => {
+          this.setState(prevState => {
+            let nextState = Object.assign({}, prevState)
+            nextState.notesAPI.unshift(data.note) 
+            return nextState
+          })
+        })
+
+    // console.log(data)
+    // console.log(this)
+    // console.log(this.props)
+    // .then((data) => {
+    //   this.setState(prevState => {
+    //     let nextState = Object.assign({}, prevState)
+    //     nextState.notesAPI.unshift(data.note) 
+    //     return nextState
+    //   })
+    // })
+
+      // .then(data => {
+      //   this.setState({
+      //     notesAPI: data.data.notes
       //   })
+      // })
+
   }
   handleSignOut() {
     let self = this;

@@ -38,10 +38,12 @@ export class  Note extends Component {
         onDrag={this.handleDrag}
         onStop={this.handleStop}>
         <div className="Note-div">
-          <div class="delete">X</div>
+          <div className="delete">X</div>
           <form onSubmit={this.handleSubmit}>
             <input type="text" defaultValue={this.props.title}  value={this.state.value.title} onChange={this.handleChange}/>
+            <br/>
             <input type="text" defaultValue={this.props.content}  value={this.state.value.content} onChange={this.handleChange}/>
+            <br/>
             <input type="submit" value="Submit" />
           </form>
           {/* <p>{props.title}</p>

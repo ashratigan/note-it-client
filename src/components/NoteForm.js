@@ -7,6 +7,7 @@ class NoteForm extends Component {
 		this.state = {
             title: this.props.note.title,
             content: this.props.note.content,
+            // editingNoteId: null,
             // id: this.props.note.id
             // token: this.props.credentials.state.token
 		}
@@ -16,7 +17,10 @@ class NoteForm extends Component {
   handleInput = (e) => {
     // this.props.resetNotification()
     this.setState({[e.target.name]: e.target.value})
-    console.log(this.state)
+    console.log(e.target.value)
+    console.log(e.target.name)
+    console.log(e.target)
+    console.log(e)
   }
 
   handleBlur = () => {
@@ -39,8 +43,10 @@ class NoteForm extends Component {
     //   )
     .then(response => {
       console.log(response)
+      console.log(this.props)
       this.props.updateNote(response.data)
       this.props.getNotes()
+      // this.props.resetEdit()
     })
     .catch(error => console.log(error, this.props.credentials.state.token))
   }

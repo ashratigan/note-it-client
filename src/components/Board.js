@@ -42,7 +42,7 @@ export class  Board extends Component {
     })    
     .then(data => {
       this.setState({
-        notes: data.data.notes
+        notes: data.data.notes,
       })
     })
   }
@@ -115,10 +115,10 @@ export class  Board extends Component {
     this.setState({notes: notes})
   }
 
-  enableEditing = (id) => {
-    this.setState({editingNoteId: id}, () => { this.title.focus() })
-    // console.log(id)
-    // console.log(this)
+  resetEdit = () => {
+   this.setState({editingNoteId: null}) 
+   console.log(this.state)
+   console.log(this.state.editingNoteId)
   }
 
   deleteNote(id) {
@@ -137,6 +137,14 @@ export class  Board extends Component {
       this.setState({notes: notes})
     })
     .catch(error => console.log(error))
+  }
+
+  enableEditing = (id) => {
+    this.setState({editingNoteId: id}, () => { this.title.focus() })
+    // console.log(id)
+    console.log(this)
+    console.log(this.state.editingNoteId)
+    console.log(this.title)
   }
 
   render() {
@@ -161,7 +169,7 @@ export class  Board extends Component {
         <div className="Board">
           {this.state.notes.map((note) => {
             if(this.state.editingNoteId === note.id) {
-              return(<NoteForm note={note} key={note.id} updateNote={this.updateNote} getNotes={this.getNotes}
+              return(<NoteForm note={note} key={note.id} updateNote={this.updateNote} getNotes={this.getNotes} resetEdit={this.resetEdit}
                       titleRef= {input => this.title = input}
                       appContext={this.props.appContext}
                  credentials={this.props.credentials}/>)

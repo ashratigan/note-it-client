@@ -17,7 +17,10 @@ const Board = props => {
       // return <Tweet key={index} tweetData={tweetData}/>
       return (
         <Note key={index} 
-               {...noteData}/>
+               {...noteData}
+               appContext={this.props.appContext}
+               credentials={this.props.credentials}
+              />
       )
     })
     // console.log(Note)

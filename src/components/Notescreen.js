@@ -69,7 +69,10 @@ export class  NoteScreen extends Component {
                 quoteAuthor={this.state.quoteAuthor}/>
         </div>
         <div className="Board">
-          <Board notesAPI={this.state.notesAPI}/>
+          <Board notesAPI={this.state.notesAPI}
+                 appContext={this.props.appContext}
+                 credentials={this.props.credentials}
+          />
           {/* <Board notes={this.state.notes}/> */}
         </div>
       </div>

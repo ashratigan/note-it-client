@@ -4,8 +4,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {UploadScreen} from './UploadScreen';
-import {NoteScreen} from './Notescreen'
+import {UploadScreen} from './UploadScreen.js';
+import {NoteScreen} from './Notescreen.js'
+// import {Note} from './Note.js'
 // import {Header} from './Header.js'
 
 class Login extends Component {
@@ -68,6 +69,19 @@ class Login extends Component {
             loginPage: [],
             noteScreen: noteScreen
           })
+
+        //   var note=[];
+        //   note.push(
+        //     <Note
+        //       credentials={self}
+        //       appContext={self.props.appContext}
+        //     />)
+        //   self.props.appContext.setState({
+        //     loginPage: [],
+        //     note: note
+        //   })
+
+
         } else if(response.status === 204){
           console.log("Username password do not match");
           alert("username password do not match")
@@ -88,6 +102,7 @@ class Login extends Component {
           <div>
           <AppBar
              title="Login"
+             
            />
            <TextField
              hintText="Enter your Email"

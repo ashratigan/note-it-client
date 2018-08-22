@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Draggable from 'react-draggable';
 import '../styles/Note.css'
 
@@ -13,6 +14,7 @@ export class  Note extends Component {
     console.log(this)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteNote = this.deleteNote.bind(this)
   }
 
   handleChange(event) {
@@ -27,6 +29,30 @@ export class  Note extends Component {
     event.preventDefault();
   }
 
+  deleteNote() {
+    let self = this;
+    axios({
+      method: 'delete',
+      url: 'http://localhost:4741/notes/${id}',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token token=' + this.props.credentials.state.token
+      }
+    })
+    // .then(() => {
+      // self.props.credentials.setState({
+      //   token: null,
+      //   id: null
+      // })
+      // let loginPage = []
+      // loginPage.push(<Loginscreen parentContext={self.props.appContext} />)
+      // self.props.appContext.setState({
+      //   loginPage: loginPage,
+      //   uploadScreen: []
+      // })
+    // })
+  }
+
   render () {
     return (
       <Draggable
@@ -38,7 +64,7 @@ export class  Note extends Component {
         onDrag={this.handleDrag}
         onStop={this.handleStop}>
         <div className="Note-div">
-          <div className="delete">X</div>
+          <div className="delete" onClick={this.deleteNote}>✖️</div>
           <form onSubmit={this.handleSubmit}>
             <input type="text" defaultValue={this.props.title}  value={this.state.value.title} onChange={this.handleChange}/>
             <br/>

@@ -1,0 +1,15 @@
+/* @import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Amatic+SC|Sacramento'); */
+
+.title {
+    /* margin: 80px 0 10px 0; */
+    font-size: 80px;
+    /* font-family: 'Josefin Sans', cursive; */
+    font-family: 'Amatic SC', cursive;
+    /* font-family: 'Sacramento', cursive; */
+    color: #333;
+    text-shadow: 4px 4px 8px #fff;
+}
+
+h1 {
+    margin: 50px;
+}

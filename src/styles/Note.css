@@ -23,3 +23,12 @@
 .content {
     min-height: 250px;
 }
+
+p {
+    margin: 15px
+}
+
+h4 {
+    margin: 15px;
+    font-weight: 700;
+}

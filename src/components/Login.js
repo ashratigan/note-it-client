@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {UploadScreen} from './UploadScreen.js';
 import {Board} from './Board.js'
+import '../styles/Login.css'
 // import {Note} from './Note.js'
 // import {Header} from './Header.js'
 
@@ -95,15 +96,18 @@ class Login extends Component {
       });
   }
 
+
   render() {
     return (
       <div>
         <MuiThemeProvider>
           <div>
           <AppBar
-             title="Login"
              
            />
+           <div className="title">
+             <h1>Note It</h1>
+           </div>
            <TextField
              hintText="Enter your Email"
              name="credentials[email]"

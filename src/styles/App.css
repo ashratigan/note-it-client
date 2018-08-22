@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Amatic+SC|Sacramento|Open+Sans+Condensed:300,700');
+
 .App {
   text-align: center;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .Board {
@@ -17,4 +20,8 @@
 .Info {
   margin: 30px 50px 0 50px;
   /* padding: 100px; */
+}
+
+p {
+  font-size: 20px;
 }

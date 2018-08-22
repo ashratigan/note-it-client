@@ -58,21 +58,19 @@ class Loginscreen extends Component {
     return (
       <div className="loginscreen">
         <div className="loginInfo">
-        {this.state.loginscreen}
-        <div>
-          <br/>
-          {this.state.loginmessage}
-          <br/>
-          <MuiThemeProvider>
-            <div>
-              <br/>
-              <RaisedButton label={this.state.buttonLabel} primary={true} onClick={(event) => this.handleClick(event)}/>
-              <br/>
-           </div>
-          </MuiThemeProvider>
+          {this.state.loginscreen}
+          <div>
+            <div className="loginMessage">
+              {this.state.loginmessage}
+            </div>
+            <br/>
+            <MuiThemeProvider>
+              <div>
+                <RaisedButton label={this.state.buttonLabel} primary={true} onClick={(event) => this.handleClick(event)}/>
+            </div>
+            </MuiThemeProvider>
+          </div>
         </div>
-        </div>
-
       </div>
     );
   }

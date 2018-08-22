@@ -18,6 +18,9 @@ export class  Board extends Component {
     this.state={
         quote: '',
         quoteAuthor: '',
+        prompt:'',
+        numFact: '',
+        poem: '',
         notes: [],
         editingNoteId: null,
         // notification: ''
@@ -54,9 +57,29 @@ export class  Board extends Component {
         })
       })
 
-      console.log(this)
-      console.log(this.props.credentials.state.token)
-      console.log(this.state)
+    axios.get('https://ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location')
+      .then(data => {
+        console.log(data)
+        console.log(data.data.english)
+        const prompt = data.data.english
+        this.setState({
+          prompt: prompt
+        })
+      })
+
+    axios.get('http://numbersapi.com/random/year?json')
+      .then(data => {
+        console.log(data.data.text)
+        // console.log(data.data)
+        const numFact = data.data.text
+        this.setState({
+          numFact: numFact
+        })
+      })
+
+      // console.log(this)
+      // console.log(this.props.credentials.state.token)
+      // console.log(this.state)
       // console.log(this.props.credentials)
     this.getNotes()
   }
@@ -130,8 +153,10 @@ export class  Board extends Component {
         </div>
           
         <div id="inspo">
-          <Info className="inspo" quote={this.state.quote}
-                quoteAuthor={this.state.quoteAuthor}/>
+          <Info quote={this.state.quote}
+                quoteAuthor={this.state.quoteAuthor}
+                prompt={this.state.prompt}
+                numFact={this.state.numFact}/>
         </div>
         
         <div className="Board">

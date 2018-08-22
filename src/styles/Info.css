@@ -2,11 +2,13 @@
     background: lightcyan;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
     border-radius: 25px;
-}
-.Quote {
     text-align: left;
-    margin: 0 auto;
-    padding: 0 50px 10px 50px;
+    margin: 10px auto;
+    padding: 20px;
+}
+h2 {
+padding: 0;
+margin: 0;
 }
 
 p {

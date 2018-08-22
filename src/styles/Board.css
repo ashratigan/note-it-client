@@ -1,6 +1,5 @@
-.Board-div {
-    width: 100%;
-    margin: 0 auto;
+.Board {
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

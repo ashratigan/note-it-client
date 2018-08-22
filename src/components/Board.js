@@ -15,7 +15,7 @@ const Board = props => {
     // })
     const notes = props.notes.map((note, index) => {
       // return <Tweet key={index} tweetData={tweetData}/>
-      if(props.state.editingIdeaId === note.id) {
+      if(props.state.editingNoteId === note.id) {
         return <Noteform note={note} key
       }
       return (

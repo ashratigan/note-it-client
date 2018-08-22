@@ -25,35 +25,40 @@ export class  NoteScreen extends Component {
     this.newNote = this.newNote.bind(this)
     this.updateNote = this.updateNote.bind(this)
     this.deleteNote = this.deleteNote.bind(this)
+    
+  }
+
+  getNotes = () => {
+    axios({
+      method: 'get',
+      url: 'http://localhost:4741/notes',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token token=' + this.props.credentials.state.token
+      },
+    })    
+    .then(data => {
+      this.setState({
+        notes: data.data.notes
+      })
+    })
   }
 
   componentDidMount() {
     axios.get('https://talaikis.com/api/quotes/random/')
-        .then(data => {
-          const quoteData = data.data
-          this.setState({
-            quote: quoteData.quote,
-            quoteAuthor: quoteData.author
-          })
-        })
-
-        console.log(this)
-        console.log(this.props.credentials.state.token)
-        console.log(this.state)
-        // console.log(this.props.credentials)
-      axios({
-        method: 'get',
-        url: 'http://localhost:4741/notes',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Token token=' + this.props.credentials.state.token
-        },
-      })    
       .then(data => {
+        const quoteData = data.data
         this.setState({
-          notes: data.data.notes
+          quote: quoteData.quote,
+          quoteAuthor: quoteData.author
         })
       })
+
+      console.log(this)
+      console.log(this.props.credentials.state.token)
+      console.log(this.state)
+      // console.log(this.props.credentials)
+    this.getNotes()
   }
 
   newNote() {
@@ -72,8 +77,13 @@ export class  NoteScreen extends Component {
       }
     })    
     .then(response => {
-      const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
+      // console.log(response)
+      // const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
+      const notes = [...this.state.notes]
+      notes.unshift(response.data.note)
+      console.log(notes)
       this.setState({notes: notes, editingNoteId: response.data.id})
+      this.getNotes()
     })
     .catch(error => console.log(error))
   }
@@ -82,6 +92,12 @@ export class  NoteScreen extends Component {
     const noteIndex = this.state.notes.findIndex(x => x.id === note.id)
     const notes = update(this.state.notes, {[noteIndex]: { $set: note }})
     this.setState({notes: notes})
+  }
+
+  enableEditing = (id) => {
+    this.setState({editingNoteId: id}, () => { this.title.focus() })
+    console.log(id)
+    console.log(this)
   }
 
   deleteNote(id) {
@@ -119,7 +135,7 @@ export class  NoteScreen extends Component {
         <div className="Board">
           {this.state.notes.map((note) => {
             if(this.state.editingNoteId === note.id) {
-              return(<NoteForm note={note} key={note.id} updateNote={this.updateNote}
+              return(<NoteForm note={note} key={note.id} updateNote={this.updateNote} getNotes={this.getNotes}
                       titleRef= {input => this.title = input}
                       resetNotification={this.resetNotification} 
                       appContext={this.props.appContext}

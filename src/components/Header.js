@@ -18,7 +18,7 @@ import Loginscreen from '../components/Loginscreen'
     super(props);
     this.state={
       // notes: [],
-      // editingIdeaId: null,
+      // editingNoteId: null,
       // notification: '',
       modalIsOpen: false
     }

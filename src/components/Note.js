@@ -21,9 +21,9 @@ export class  Note extends Component {
         onDrag={this.handleDrag}
         onStop={this.handleStop}>
         <div className="Note-div">
-          <div className="delete" onClick={this.handleDelete}><span>✖️</span></div>
+          <span className="delete" onClick={this.handleDelete}>✖️</span>
           <h4 onClick={this.handleClick}>{this.props.note.title}</h4>
-		      <p onClick={this.handleClick}>{this.props.note.content}</p>
+		      <p className="content"onClick={this.handleClick}>{this.props.note.content}</p>
       </div>
       </Draggable>
 

@@ -69,8 +69,8 @@ export class  Note extends Component {
         onStop={this.handleStop}>
         <div className="Note-div">
           <div className="delete" onClick={this.handleDelete}>✖️</div>
-          <h4>{this.props.note.title}</h4>
-		      <p>{this.props.note.content}</p>
+          <h4 onClick={this.handleClick}>{this.props.note.title}</h4>
+		      <p onClick={this.handleClick}>{this.props.note.content}</p>
           {/* <form onSubmit={this.handleSubmit}>
             <input type="text" defaultValue={this.props.title}  value={this.state.value.title} onChange={this.handleChange}/>
             <br/>

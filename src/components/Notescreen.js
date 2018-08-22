@@ -88,7 +88,7 @@ export class  NoteScreen extends Component {
     // let self = this;
     axios({
       method: 'delete',
-      url: 'http://localhost:4741/notes/${id}',
+      url: `http://localhost:4741/notes/${id}`,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Token token=' + this.props.credentials.state.token

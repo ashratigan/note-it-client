@@ -3,10 +3,13 @@
     padding: 10px 0;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
     text-align: right;
+    height: 30px;
+    background: rgba(0,190,217);
+    color: white;
 }
 
 .button {
-    margin: 10px;
+    margin-right: 20px;
 }
 
 .close {

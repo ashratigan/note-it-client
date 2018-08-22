@@ -5,7 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {UploadScreen} from './UploadScreen.js';
-import {NoteScreen} from './Notescreen.js'
+import {Board} from './Board.js'
 // import {Note} from './Note.js'
 // import {Header} from './Header.js'
 
@@ -59,15 +59,15 @@ class Login extends Component {
              uploadScreen: uploadScreen
             })
 
-          var noteScreen=[];
-          noteScreen.push(
-            <NoteScreen
+          var board=[];
+          board.push(
+            <Board
               credentials={self}
               appContext={self.props.appContext}
             />)
           self.props.appContext.setState({
             loginPage: [],
-            noteScreen: noteScreen
+            board: board
           })
 
         //   var note=[];

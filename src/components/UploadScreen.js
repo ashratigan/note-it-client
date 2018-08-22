@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NoteScreen} from './Notescreen'
+import {Board} from './Board'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
@@ -15,7 +15,7 @@ export class UploadScreen extends Component {
     return (
       <div>
         <MuiThemeProvider>
-          <NoteScreen
+          <Board
             appContext={this.props.appContext}
             credentials={this.props.credentials}
           />

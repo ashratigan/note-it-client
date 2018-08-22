@@ -18,8 +18,6 @@ const Board = props => {
       return (
         <Note key={index} 
                {...noteData}
-               appContext={this.props.appContext}
-               credentials={this.props.credentials}
               />
       )
     })

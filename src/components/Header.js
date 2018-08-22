@@ -17,10 +17,12 @@ import Loginscreen from '../components/Loginscreen'
   constructor(props){
     super(props);
     this.state={
-      notesAPI: [],
+      // notesAPI: [],
+      // editingIdeaId: null,
+      // notification: '',
       modalIsOpen: false
     }
-    this.newNote = this.newNote.bind(this)
+    // this.newNote = this.newNote.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -42,21 +44,6 @@ import Loginscreen from '../components/Loginscreen'
 
   
 
-  newNote() {
-    axios({
-      method: 'post',
-      url: 'http://localhost:4741/notes',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Token token=' + this.props.credentials.state.token
-      },
-      data: {
-        "note": {
-          "title": "",
-          "content": ""
-        }
-      }
-    })    
 
       // axios({
       
@@ -68,13 +55,13 @@ import Loginscreen from '../components/Loginscreen'
       //   }
       // })    
       
-        .then(data => {
-          this.setState(prevState => {
-            let nextState = Object.assign({}, prevState)
-            nextState.notesAPI.unshift(data.note) 
-            return nextState
-          })
-        })
+        // .then(data => {
+        //   this.setState(prevState => {
+        //     let nextState = Object.assign({}, prevState)
+        //     nextState.notesAPI.unshift(data.note) 
+        //     return nextState
+        //   })
+        // })
 
     // console.log(data)
     // console.log(this)
@@ -93,7 +80,7 @@ import Loginscreen from '../components/Loginscreen'
       //   })
       // })
 
-  }
+  // }
   handleSignOut() {
     let self = this;
     axios({
@@ -141,7 +128,7 @@ import Loginscreen from '../components/Loginscreen'
     return (
       <div className="Header-div">
         <p>Header</p>
-        <button id="newNote" onClick={this.newNote}>New note</button>
+
         <button onClick={this.handleSignOut}>Sign Out</button>
         <button onClick={this.openModal}>Change Password</button>
         <Modal

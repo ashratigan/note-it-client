@@ -17,9 +17,9 @@ export class  Note extends Component {
     // this.deleteNote = this.deleteNote.bind(this)
   // }
 
-  // handleClick = () => { this.props.onClick(this.props.note.id) }
+  handleClick = () => { this.props.onClick(this.props.note.id) }
 
-	// handleDelete = () => { this.props.onDelete(this.props.note.id) }
+	handleDelete = () => { this.props.onDelete(this.props.note.id) }
 
   // handleChange(event) {
   //   console.log(event.target.value)

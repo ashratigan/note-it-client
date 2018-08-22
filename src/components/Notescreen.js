@@ -6,6 +6,7 @@ import { Header } from './Header.js'
 import axios from 'axios';
 import update from 'immutability-helper'
 import NoteForm from './NoteForm.js'
+import '../styles/NoteScreen.css'
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import Login from './Login';
@@ -19,9 +20,11 @@ export class  NoteScreen extends Component {
         quoteAuthor: '',
         notes: [],
         editingNoteId: null,
-        notification: ''
+        // notification: ''
     }
     this.newNote = this.newNote.bind(this)
+    this.updateNote = this.updateNote.bind(this)
+    this.deleteNote = this.deleteNote.bind(this)
   }
 
   componentDidMount() {
@@ -35,7 +38,7 @@ export class  NoteScreen extends Component {
         })
 
         console.log(this)
-        console.log(this.props.credentials.state.tokenn)
+        console.log(this.props.credentials.state.token)
         console.log(this.state)
         // console.log(this.props.credentials)
       axios({
@@ -78,11 +81,11 @@ export class  NoteScreen extends Component {
   updateNote(note) {
     const noteIndex = this.state.notes.findIndex(x => x.id === note.id)
     const notes = update(this.state.notes, {[noteIndex]: { $set: note }})
-    this.setState({notes: notes, notification: 'All changes saved'})
+    this.setState({notes: notes})
   }
 
   deleteNote(id) {
-    let self = this;
+    // let self = this;
     axios({
       method: 'delete',
       url: 'http://localhost:4741/notes/${id}',
@@ -115,10 +118,12 @@ export class  NoteScreen extends Component {
         <button id="newNote" onClick={this.newNote}>New note</button>
         <div className="Board">
           {this.state.notes.map((note) => {
-            if(this.state.editingnoteId === note.id) {
+            if(this.state.editingNoteId === note.id) {
               return(<NoteForm note={note} key={note.id} updateNote={this.updateNote}
                       titleRef= {input => this.title = input}
-                      resetNotification={this.resetNotification} />)
+                      resetNotification={this.resetNotification} 
+                      appContext={this.props.appContext}
+                 credentials={this.props.credentials}/>)
             } else {
               return (<Note note={note} key={note.id} onClick={this.enableEditing}
                       onDelete={this.deleteNote} />)

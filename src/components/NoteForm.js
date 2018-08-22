@@ -5,8 +5,8 @@ class NoteForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-      title: this.props.note.title,
-      conent: this.props.note.content
+            title: this.props.note.title,
+            conent: this.props.note.content
 		}
 	}
 
@@ -17,16 +17,22 @@ class NoteForm extends Component {
 
   handleBlur = () => {
     const note = {title: this.state.title, content: this.state.content }
+    console.log(this.props.note.note.id)
+    console.log(this.props.note)
+    console.log(this.props)
     axios({
-        method: 'get',
-        url: 'http://localhost:4741/notes',
+        method: 'patch',
+        url: `http://localhost:4741/notes/${this.props.note.note.id}`,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Token token=' + this.props.credentials.state.token
         },
         data: {
-            note:note
-          }
+            "note": {
+              "title": this.state.title,
+              "content": this.state.conent
+            }
+        }
     })
     // axios.patch(
     //   `http://localhost:3001/api/v1/notes/${this.props.note.id}`,
@@ -43,11 +49,8 @@ class NoteForm extends Component {
     return (
       <div className="tile">
       	<form onBlur={this.handleBlur} >
-					<input className='input' type="text" name="title" placeholder='Enter a Title'
-            value={this.state.title} onChange={this.handleInput}
-            ref={this.props.titleRef} />
-					<textarea className='input' name="content" placeholder='Describe your note'
-            value={this.state.content} onChange={this.handleInput}></textarea>
+			<input className='input' type="text" name="title" placeholder='Enter a Title'value={this.state.title} onChange={this.handleInput} ref={this.props.titleRef} />
+			<textarea className='input' name="content" placeholder='Describe your note' value={this.state.content} onChange={this.handleInput}></textarea>
       	</form>
       </div>
     );

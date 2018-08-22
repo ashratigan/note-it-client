@@ -122,16 +122,18 @@ export class  Board extends Component {
     return (
       <div className="NoteScreen">
         <div className="Header">
+          <div id="newNote" onClick={this.newNote}>New note</div>
           <Header 
             appContext={this.props.appContext}
             credentials={this.props.credentials}
           />
         </div>
-        <div className="Info">
-          <Info quote={this.state.quote}
+          
+        <div id="inspo">
+          <Info className="inspo" quote={this.state.quote}
                 quoteAuthor={this.state.quoteAuthor}/>
         </div>
-        <button id="newNote" onClick={this.newNote}>New note</button>
+        
         <div className="Board">
           {this.state.notes.map((note) => {
             if(this.state.editingNoteId === note.id) {

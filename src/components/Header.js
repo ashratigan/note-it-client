@@ -17,7 +17,7 @@ import Loginscreen from '../components/Loginscreen'
   constructor(props){
     super(props);
     this.state={
-      // notesAPI: [],
+      // notes: [],
       // editingIdeaId: null,
       // notification: '',
       modalIsOpen: false
@@ -58,7 +58,7 @@ import Loginscreen from '../components/Loginscreen'
         // .then(data => {
         //   this.setState(prevState => {
         //     let nextState = Object.assign({}, prevState)
-        //     nextState.notesAPI.unshift(data.note) 
+        //     nextState.notes.unshift(data.note) 
         //     return nextState
         //   })
         // })
@@ -69,14 +69,14 @@ import Loginscreen from '../components/Loginscreen'
     // .then((data) => {
     //   this.setState(prevState => {
     //     let nextState = Object.assign({}, prevState)
-    //     nextState.notesAPI.unshift(data.note) 
+    //     nextState.notes.unshift(data.note) 
     //     return nextState
     //   })
     // })
 
       // .then(data => {
       //   this.setState({
-      //     notesAPI: data.data.notes
+      //     notes: data.data.notes
       //   })
       // })
 

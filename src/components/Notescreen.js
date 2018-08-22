@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import Board from './Board.js'
+// import Board from './Board.js'
+import { Note } from './Note.js'
 import Info from './Info.js'
 import { Header } from './Header.js'
 import axios from 'axios';
 import update from 'immutability-helper'
+import NoteForm from './NoteForm.js'
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import Login from './Login';
@@ -15,8 +17,8 @@ export class  NoteScreen extends Component {
     this.state={
         quote: '',
         quoteAuthor: '',
-        notesAPI: [],
-        editingIdeaId: null,
+        notes: [],
+        editingNoteId: null,
         notification: ''
     }
     this.newNote = this.newNote.bind(this)
@@ -43,19 +45,12 @@ export class  NoteScreen extends Component {
           'Content-Type': 'application/json',
           'Authorization': 'Token token=' + this.props.credentials.state.token
         },
-      //   data: {
-      //     note: {
-      //         title: this.state.title,
-      //         content: this.state.conetnt
-      //     }
-      // },
       })    
-    // axios.get('http://localhost:4741/notes')
-        .then(data => {
-          this.setState({
-            notesAPI: data.data.notes
-          })
+      .then(data => {
+        this.setState({
+          notes: data.data.notes
         })
+      })
   }
 
   newNote() {
@@ -74,12 +69,35 @@ export class  NoteScreen extends Component {
       }
     })    
     .then(response => {
-      const notesAPI = update(this.state.notesAPI, { $splice: [[0, 0, response.data]]})
-      this.setState({notesAPI: notesAPI, editingIdeaId: response.data.id})
+      const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
+      this.setState({notes: notes, editingNoteId: response.data.id})
     })
     .catch(error => console.log(error))
   }
 
+  updateNote(note) {
+    const noteIndex = this.state.notes.findIndex(x => x.id === note.id)
+    const notes = update(this.state.notes, {[noteIndex]: { $set: note }})
+    this.setState({notes: notes, notification: 'All changes saved'})
+  }
+
+  deleteNote(id) {
+    let self = this;
+    axios({
+      method: 'delete',
+      url: 'http://localhost:4741/notes/${id}',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token token=' + this.props.credentials.state.token
+      }
+    })
+    .then(response => {
+      const noteIndex = this.state.notes.findIndex(x => x.id === id)
+      const notes = update(this.state.notes, { $splice: [[noteIndex, 1]]})
+      this.setState({notes: notes})
+    })
+    .catch(error => console.log(error))
+  }
 
   render() {
     return (
@@ -96,10 +114,20 @@ export class  NoteScreen extends Component {
         </div>
         <button id="newNote" onClick={this.newNote}>New note</button>
         <div className="Board">
-          <Board notesAPI={this.state.notesAPI}
+          {this.state.notes.map((note) => {
+            if(this.state.editingnoteId === note.id) {
+              return(<NoteForm note={note} key={note.id} updateNote={this.updateNote}
+                      titleRef= {input => this.title = input}
+                      resetNotification={this.resetNotification} />)
+            } else {
+              return (<Note note={note} key={note.id} onClick={this.enableEditing}
+                      onDelete={this.deleteNote} />)
+            }
+          })}
+          {/* <Board notes={this.state.notes}
                  appContext={this.props.appContext}
                  credentials={this.props.credentials}
-          />
+          /> */}
           {/* <Board notes={this.state.notes}/> */}
         </div>
       </div>

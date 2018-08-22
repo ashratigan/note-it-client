@@ -13,20 +13,25 @@ const Board = props => {
     //            {...noteData}/>
     //   )
     // })
-    const NotesAPI = props.notesAPI.map((noteData, index) => {
+    const notes = props.notes.map((note, index) => {
       // return <Tweet key={index} tweetData={tweetData}/>
+      if(props.state.editingIdeaId === note.id) {
+        return <Noteform note={note} key
+      }
       return (
         <Note key={index} 
                {...noteData}
               />
       )
     })
+
+
     // console.log(Note)
     // console.log(props.notes)
     return (
       <div className="Board-div">
         {/* {Notes} */}
-        {NotesAPI}
+        {notes}
         {/* <span>{`– ${props.noteContent}`}</span> */}
       </div>
     )

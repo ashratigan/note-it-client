@@ -25,7 +25,7 @@ class App extends Component {
       uploadScreen:[]
       // quote: '',
       // quoteAuthor: '',
-      // notesAPI: []
+      // notes: []
       // notes: [{
       //     title: 'note',
       //     content: 'notes'
@@ -65,7 +65,7 @@ class App extends Component {
   //   axios.get('http://localhost:4741/notes')
   //       .then(data => {
   //         this.setState({
-  //           notesAPI: data.data.notes
+  //           notes: data.data.notes
   //         })
   //       })
   // }

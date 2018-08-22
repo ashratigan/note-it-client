@@ -3,15 +3,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 100px;
     /* justify-content: space-around; */
     /* box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;  */
 }
 
-#newNote {
+.buttonNotes {
     float: left;
-    width: 50px;
+    /* width: 50px; */
     color: white;
-    margin: 10px 0 0 20px;
+    margin: 10px 0 0 50px;
 }
 
 #inspo {

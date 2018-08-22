@@ -7,7 +7,7 @@ console.log(props)
     <div className="Info-div">
         {/* <p>Info</p> */}
         <div className="Quote">
-          <h2>Quote</h2>
+          <h2>Random Quote</h2>
           <p className="QuoteText">{props.quote}</p>
           <span className="QuoteAuthor">{`– ${props.quoteAuthor}`}</span>
         </div>

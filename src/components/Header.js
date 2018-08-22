@@ -154,6 +154,7 @@ import Loginscreen from '../components/Loginscreen'
         >
           <span className="close" onClick={this.closeModal}>✖️</span>
           <h2>Change Password</h2>
+          <br/>
           <form id="change-password-form">
             <input type="password" name="passwords[old]" placeholder="Old Password" />
             <br />

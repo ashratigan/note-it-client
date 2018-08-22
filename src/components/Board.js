@@ -103,6 +103,7 @@ export class  Board extends Component {
       // console.log(response)
       // const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
       const notes = [...this.state.notes]
+      console.log(notes)
       notes.unshift(response.data.note)
       console.log(notes)
       this.setState({notes: notes, editingNoteId: response.data.id})
@@ -145,7 +146,8 @@ export class  Board extends Component {
     return (
       <div className="NoteScreen">
         <div className="Header">
-          <div id="newNote" onClick={this.newNote}>New note</div>
+          <div className="buttonNotes" id="newNote" onClick={this.newNote}>New note</div>
+          <div className="buttonNotes">Need Some Inspo?</div>
           <Header 
             appContext={this.props.appContext}
             credentials={this.props.credentials}

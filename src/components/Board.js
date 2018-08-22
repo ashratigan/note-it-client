@@ -59,8 +59,8 @@ export class  Board extends Component {
 
     axios.get('https://ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location')
       .then(data => {
-        console.log(data)
-        console.log(data.data.english)
+        // console.log(data)
+        // console.log(data.data.english)
         const prompt = data.data.english
         this.setState({
           prompt: prompt
@@ -69,7 +69,7 @@ export class  Board extends Component {
 
     axios.get('http://numbersapi.com/random/year?json')
       .then(data => {
-        console.log(data.data.text)
+        // console.log(data.data.text)
         // console.log(data.data)
         const numFact = data.data.text
         this.setState({
@@ -100,13 +100,19 @@ export class  Board extends Component {
       }
     })    
     .then(response => {
+      // console.log(response.data)
+      console.log(response.data.note)
+      // console.log(response.data.note.note)
+      console.log(response.data.note.id)
+      this.setState({editingNoteId: response.data.note.id})
       // console.log(response)
       // const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
       const notes = [...this.state.notes]
-      console.log(notes)
+      // console.log(notes)
       notes.unshift(response.data.note)
-      console.log(notes)
-      this.setState({notes: notes, editingNoteId: response.data.id})
+      this.setState({notes: notes})
+      
+      console.log(this.state.editingNoteId)
       this.getNotes()
     })
     .catch(error => console.log(error))
@@ -120,8 +126,8 @@ export class  Board extends Component {
 
   enableEditing = (id) => {
     this.setState({editingNoteId: id}, () => { this.title.focus() })
-    console.log(id)
-    console.log(this)
+    // console.log(id)
+    // console.log(this)
   }
 
   deleteNote(id) {
@@ -166,7 +172,6 @@ export class  Board extends Component {
             if(this.state.editingNoteId === note.id) {
               return(<NoteForm note={note} key={note.id} updateNote={this.updateNote} getNotes={this.getNotes}
                       titleRef= {input => this.title = input}
-                      resetNotification={this.resetNotification} 
                       appContext={this.props.appContext}
                  credentials={this.props.credentials}/>)
             } else {

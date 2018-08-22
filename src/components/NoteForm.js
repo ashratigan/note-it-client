@@ -16,6 +16,7 @@ class NoteForm extends Component {
   handleInput = (e) => {
     // this.props.resetNotification()
     this.setState({[e.target.name]: e.target.value})
+    console.log(this.state)
   }
 
   handleBlur = () => {
@@ -48,9 +49,9 @@ class NoteForm extends Component {
     return (
       <div className="Note-div">
       	<form onBlur={this.handleBlur} >
-			<input className='input' type="text" name="title" placeholder='Enter a Title' value={this.state.title} onChange={this.handleInput} ref={this.props.titleRef} />
-			<br/>
-            <textarea className='input' name="content" placeholder='Describe your note' value={this.state.content} onChange={this.handleInput}></textarea>
+			    <input className='input' type="text" name="title" placeholder='Enter a Title' value={this.state.title} onChange={this.handleInput} ref={this.props.titleRef} />
+			    <br/>
+          <textarea className='input' name="content" placeholder='Describe your note' value={this.state.content} onChange={this.handleInput}></textarea>
       	</form>
       </div>
     );

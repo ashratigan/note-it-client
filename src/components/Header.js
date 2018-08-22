@@ -121,7 +121,7 @@ import Loginscreen from '../components/Loginscreen'
   }
   
   changePassword() {
-    let self = this;
+    // let self = this;
     axios({
       method: 'patch',
       url: 'http://localhost:4741/change-password',
@@ -152,7 +152,7 @@ import Loginscreen from '../components/Loginscreen'
           style={customStyles}
           contentLabel="Change Password Modal"
         >
-          <span className="close" onClick={this.closeModal}>✖️</span>
+          <span role="img" aria-labelledby="delete" className="close" onClick={this.closeModal}>✖️</span>
           <h2>Change Password</h2>
           <br/>
           <form id="change-password-form">

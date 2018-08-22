@@ -13,6 +13,21 @@ import Loginscreen from '../components/Loginscreen'
   // axios.post('http://localhost:4741/notes')
   // .then(
   // })
+
+  const customStyles = {
+    content : {
+      top                   : '25%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)',
+      textAlign : 'center',
+      width : '300px'
+    }
+
+  };
+
   export class Header extends Component {
   constructor(props){
     super(props);
@@ -25,7 +40,7 @@ import Loginscreen from '../components/Loginscreen'
     // this.newNote = this.newNote.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
+    // this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -33,10 +48,10 @@ import Loginscreen from '../components/Loginscreen'
     this.setState({modalIsOpen: true});
   }
 
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
+  // afterOpenModal() {
+  //   // references are now sync'd and can be accessed.
+  //   this.subtitle.style.color = '#f00';
+  // }
 
   closeModal() {
     this.setState({modalIsOpen: false});
@@ -127,18 +142,18 @@ import Loginscreen from '../components/Loginscreen'
   render() {
     return (
       <div className="Header-div">
-        <p>Header</p>
-
-        <button onClick={this.handleSignOut}>Sign Out</button>
-        <button onClick={this.openModal}>Change Password</button>
+        {/* <p>Header</p> */}
+        <span className="button" onClick={this.openModal}>Change Password</span>
+        <span className="button" onClick={this.handleSignOut}>Sign Out</span>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
+          style={customStyles}
+          contentLabel="Change Password Modal"
         >
-          <button onClick={this.closeModal}>X</button>
-          <h2 ref={subtitle => this.subtitle = subtitle}>Change Password</h2>
+          <span className="close" onClick={this.closeModal}>✖️</span>
+          <h2>Change Password</h2>
           <form id="change-password-form">
             <input type="password" name="passwords[old]" placeholder="Old Password" />
             <br />

@@ -2,4 +2,22 @@
     width: 100vw;
     padding: 10px 0;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    text-align: right;
+}
+
+.button {
+    margin: 10px;
+}
+
+.close {
+    float:right;
+}
+
+h2 {
+    color: #333;
+    text-shadow: 4px 4px 8px #fff;
+}
+
+input {
+   margin: 0 0 10px 0;
 }

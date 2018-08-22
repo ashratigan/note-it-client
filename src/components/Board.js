@@ -100,19 +100,10 @@ export class  Board extends Component {
       }
     })    
     .then(response => {
-      // console.log(response.data)
-      console.log(response.data.note)
-      // console.log(response.data.note.note)
-      console.log(response.data.note.id)
       this.setState({editingNoteId: response.data.note.id})
-      // console.log(response)
-      // const notes = update(this.state.notes, { $splice: [[0, 0, response.data]]})
       const notes = [...this.state.notes]
-      // console.log(notes)
       notes.unshift(response.data.note)
       this.setState({notes: notes})
-      
-      console.log(this.state.editingNoteId)
       this.getNotes()
     })
     .catch(error => console.log(error))

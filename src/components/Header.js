@@ -24,7 +24,8 @@ import Loginscreen from '../components/Loginscreen'
     this.state={
       modalIsOpen: false,
       oldPassword: '',
-      newPassword: ''
+      newPassword: '',
+      passowrdMessage: ''
     }
     this.handleSignOut = this.handleSignOut.bind(this)
     this.changePassword = this.changePassword.bind(this)
@@ -88,7 +89,18 @@ import Loginscreen from '../components/Loginscreen'
         }
       }
     })
+    .then(response => {
+      console.log(response)
+      this.state.passowrdMessage = "Password changed successfully"
+      console.log(this.state.passowrdMessage)
+      // this.props.updateNote(response.data)
+      // this.props.getNotes()
+      // this.props.resetEdit()
+    })
+    .catch(error => console.log(error, this.props.credentials.state.token))
+    this.state.passowrdMessage = "Something went wrong!"
   }
+  
   
 
   render() {
@@ -106,6 +118,7 @@ import Loginscreen from '../components/Loginscreen'
         >
           <span role="img" aria-labelledby="delete" className="close" onClick={this.closeModal}>✖️</span>
           <h2>Change Password</h2>
+          <div className="passowrdMessage">{this.state.passowrdMessage}</div>
           <br/>
           <form>
             <input type="password" name="oldPassword" placeholder="Old Password"  value={this.state.oldPassword} onChange={this.handleChange}/>

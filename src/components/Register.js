@@ -30,7 +30,7 @@ class Register extends Component {
         method: 'POST',
         data: {
             credentials: {
-                email: this.state.email,
+                email: this.state.username,
                 password: this.state.password,
                 password_confirmation:this.state.password_confirmation
             }

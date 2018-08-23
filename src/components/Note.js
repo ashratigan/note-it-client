@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import Draggable from 'react-draggable';
+import React, { Component } from 'react'
+import Draggable from 'react-draggable'
 import '../styles/Note.css'
 
 
 
 export class  Note extends Component {
-
+  
   handleClick = () => { this.props.onDoubleClick(this.props.note.id) }
-
 	handleDelete = () => { this.props.onDelete(this.props.note.id) }
 
   render () {
@@ -24,11 +23,8 @@ export class  Note extends Component {
           <span className="delete" role="img" aria-labelledby="delete" onClick={this.handleDelete}>✖️</span>
           <h4 onDoubleClick={this.handleClick}>{this.props.note.title}</h4>
 		      <p className="content"onDoubleClick={this.handleClick}>{this.props.note.content}</p>
-      </div>
+        </div>
       </Draggable>
-
     )
   }
 }
-
-// export default Note

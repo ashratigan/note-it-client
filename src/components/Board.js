@@ -1,36 +1,29 @@
-import React, { Component } from 'react';
-// import Board from './Board.js'
+import React, { Component } from 'react'
 import { Note } from './Note.js'
 import Info from './Info.js'
 import { Header } from './Header.js'
-import axios from 'axios';
+import axios from 'axios'
 import update from 'immutability-helper'
 import NoteForm from './NoteForm.js'
 import { apiUrl } from './Config.js'
 import '../styles/Board.css'
 
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import RaisedButton from 'material-ui/RaisedButton';
-// import Login from './Login';
-// import Register from './Register';
-
 export class  Board extends Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state={
-        quote: '',
-        quoteAuthor: '',
-        prompt:'',
-        question: '',
-        answer: '',
-        notes: [],
-        editingNoteId: null,
-        isHidden: true
+      quote: '',
+      quoteAuthor: '',
+      prompt:'',
+      question: '',
+      answer: '',
+      notes: [],
+      editingNoteId: null,
+      isHidden: true
     }
     this.newNote = this.newNote.bind(this)
     this.updateNote = this.updateNote.bind(this)
     this.deleteNote = this.deleteNote.bind(this)
-    
   }
 
   toggleHidden () {
@@ -38,23 +31,6 @@ export class  Board extends Component {
       isHidden: !this.state.isHidden
     })
   }
-
-
-getClickHandler = (onClick, onDblClick, delay) => {
-  var timeoutID = null;
-  delay = delay || 250;
-  return function (event) {
-      if (!timeoutID) {
-          timeoutID = setTimeout(function () {
-              onClick(event);
-              timeoutID = null
-          }, delay);
-      } else {
-          timeoutID = clearTimeout(timeoutID);
-          onDblClick(event);
-      }
-  };
-}
 
   getNotes = () => {
     axios({
@@ -98,8 +74,6 @@ getClickHandler = (onClick, onDblClick, delay) => {
   getPropmt = () => {
     axios.get('https://ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location')
     .then(data => {
-      // console.log(data)
-      // console.log(data.data.english)
       const prompt = data.data.english
       this.setState({
         prompt: prompt
@@ -136,7 +110,7 @@ getClickHandler = (onClick, onDblClick, delay) => {
       this.setState({notes: notes})
       this.getNotes()
     })
-    .catch(error => console.log(error))
+    // .catch(error => console.log(error))
   }
 
   updateNote(note) {
@@ -147,12 +121,9 @@ getClickHandler = (onClick, onDblClick, delay) => {
 
   resetEdit = () => {
    this.setState({editingNoteId: null}) 
-   console.log(this.state)
-   console.log(this.state.editingNoteId)
   }
 
   deleteNote(id) {
-    // let self = this;
     axios({
       method: 'delete',
       url: apiUrl + `/notes/${id}`,
@@ -166,15 +137,11 @@ getClickHandler = (onClick, onDblClick, delay) => {
       const notes = update(this.state.notes, { $splice: [[noteIndex, 1]]})
       this.setState({notes: notes})
     })
-    .catch(error => console.log(error))
+    // .catch(error => console.log(error))
   }
 
   enableEditing = (id) => {
     this.setState({editingNoteId: id}, () => { this.title.focus() })
-    // console.log(id)
-    console.log(this)
-    console.log(this.state.editingNoteId)
-    console.log(this.title)
   }
 
   render() {
@@ -201,24 +168,21 @@ getClickHandler = (onClick, onDblClick, delay) => {
         <div className="Board">
           {this.state.notes.map((note) => {
             if(this.state.editingNoteId === note.id) {
-              return(<NoteForm note={note} key={note.id} updateNote={this.updateNote} getNotes={this.getNotes} resetEdit={this.resetEdit}
+              return(<NoteForm note={note} key={note.id} 
+                      updateNote={this.updateNote} 
+                      getNotes={this.getNotes} 
+                      resetEdit={this.resetEdit}
                       titleRef= {input => this.title = input}
                       appContext={this.props.appContext}
-                 credentials={this.props.credentials}/>)
+                      credentials={this.props.credentials}/>)
             } else {
-              return (<Note note={note} key={note.id} onDoubleClick={this.enableEditing}
+              return (<Note note={note} key={note.id} 
+                      onDoubleClick={this.enableEditing}
                       onDelete={this.deleteNote} />)
             }
           })}
-          {/* <Board notes={this.state.notes}
-                 appContext={this.props.appContext}
-                 credentials={this.props.credentials}
-          /> */}
-          {/* <Board notes={this.state.notes}/> */}
         </div>
       </div>
-    );
+    )
   }
 }
-
-// export default NoteScreen;

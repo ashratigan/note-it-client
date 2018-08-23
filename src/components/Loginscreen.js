@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
-import Login from './Login';
-import Register from './Register';
+import React, { Component } from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import RaisedButton from 'material-ui/RaisedButton'
+import Login from './Login'
+import Register from './Register'
 import '../styles/LoginScreen.css'
 
 class Loginscreen extends Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state={
       username:'',
       password:'',
@@ -18,39 +18,35 @@ class Loginscreen extends Component {
     }
   }
   componentWillMount(){
-    let loginscreen=[];
-    loginscreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>);
-    var loginmessage = "Not registered yet, Register Now";
-    this.setState({
-                  loginscreen:loginscreen,
-                  loginmessage:loginmessage
-                    })
+    let loginscreen=[]
+    loginscreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>)
+    let loginmessage = "Not registered yet, Register Now"
+    this.setState({loginscreen:loginscreen, loginmessage:loginmessage})
   }
 
   handleClick(event){
-    // console.log("event",event);
-    let loginmessage;
+    let loginmessage
     if(this.state.isLogin){
-      var loginscreen=[];
-      loginscreen.push(<Register parentContext={this} appContext={this.props.parentContext}/>);
-      loginmessage = "Already registered. Go to Login";
+      let loginscreen=[]
+      loginscreen.push(<Register parentContext={this} appContext={this.props.parentContext}/>)
+      loginmessage = "Already registered. Go to Login"
       this.setState({
-                     loginscreen:loginscreen,
-                     loginmessage:loginmessage,
-                     buttonLabel:"Login",
-                     isLogin:false
-                   })
+        loginscreen:loginscreen,
+        loginmessage:loginmessage,
+        buttonLabel:"Login",
+        isLogin:false
+      })
     }
     else{
-      let loginscreen=[];
-      loginscreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>);
-      loginmessage = "Not Registered yet. Go to registration";
+      let loginscreen=[]
+      loginscreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>)
+      loginmessage = "Not Registered yet. Go to registration"
       this.setState({
-                     loginscreen:loginscreen,
-                     loginmessage:loginmessage,
-                     buttonLabel:"Register",
-                     isLogin:true
-                   })
+        loginscreen:loginscreen,
+        loginmessage:loginmessage,
+        buttonLabel:"Register",
+        isLogin:true
+      })
     }
   }
 
@@ -67,13 +63,13 @@ class Loginscreen extends Component {
             <MuiThemeProvider>
               <div>
                 <RaisedButton label={this.state.buttonLabel} primary={true} onClick={(event) => this.handleClick(event)}/>
-            </div>
+              </div>
             </MuiThemeProvider>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Loginscreen;
+export default Loginscreen

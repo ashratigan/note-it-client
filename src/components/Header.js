@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Modal from 'react-modal';
+import React, { Component } from 'react'
+import axios from 'axios'
+import Modal from 'react-modal'
 import Loginscreen from '../components/Loginscreen'
 import { apiUrl } from './Config.js'
 import '../styles/Header.css'
@@ -16,12 +16,11 @@ import '../styles/Header.css'
       textAlign : 'center',
       width : '300px'
     }
+  }
 
-  };
-
-  export class Header extends Component {
+export class Header extends Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state={
       modalIsOpen: false,
       oldPassword: '',
@@ -30,30 +29,25 @@ import '../styles/Header.css'
     }
     this.handleSignOut = this.handleSignOut.bind(this)
     this.changePassword = this.changePassword.bind(this)
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    console.log(this)
-    console.log(this.props)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
   openModal() {
-    this.setState({modalIsOpen: true});
-    console.log(this)
+    this.setState({modalIsOpen: true})
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({modalIsOpen: false})
     this.setState({passowrdMessage: ''})
-    // this.setState({oldPassowrd: ''})
-    // this.setState({newPassowrd: ''})
   }
 
   handleSignOut() {
-    let self = this;
+    let self = this
     axios({
       method: 'delete',
       url: apiUrl + '/sign-out/',
@@ -77,8 +71,8 @@ import '../styles/Header.css'
   }
   
   changePassword(e) {
-    e.preventDefault();
-    let self = this;
+    e.preventDefault()
+    let self = this
     axios({
       method: 'patch',
       url: apiUrl + '/change-password',
@@ -94,23 +88,19 @@ import '../styles/Header.css'
       }
     })
     .then(response => {
-      console.log(response)
       this.setState({passowrdMessage: "Password changed successfully", oldPassword: '', newPassword: ''})
-      this.refs.form.reset();
+      this.refs.form.reset()
     })
     .catch(error => {
-      console.log(error, this.props.credentials.state.token)
+      // console.log(error, this.props.credentials.state.token)
       this.setState({passowrdMessage: "Something went wrong! Is that your old password?", oldPassword: '', newPassword: ''})
-      this.refs.form.reset();
+      this.refs.form.reset()
     })
   }
   
-  
-
   render() {
     return (
       <div className="Header-div">
-        {/* <p>Header</p> */}
         <span className="button" onClick={this.openModal}>Change Password</span>
         <span className="button" onClick={this.handleSignOut}>Sign Out</span>
         <Modal
@@ -133,6 +123,6 @@ import '../styles/Header.css'
           </form>
         </Modal>
       </div>
-    );
+    )
   }
 }

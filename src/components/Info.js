@@ -4,10 +4,8 @@ import '../styles/Info.css'
 
 
 const Header = props => {
-// console.log(props)
   return (
     <div className="Info-div">
-        {/* <p>Info</p> */}
         <div className="Quote">
           <h2>Random Quote</h2>
           <p className="QuoteText">{props.quote}</p>

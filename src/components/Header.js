@@ -4,16 +4,6 @@ import Modal from 'react-modal';
 import '../styles/Header.css'
 import Loginscreen from '../components/Loginscreen'
 
-// const Header = props => {
-
-//   const styles = {
-//       background: 'grey'
-//   }
-
-  // axios.post('http://localhost:4741/notes')
-  // .then(
-  // })
-
   const customStyles = {
     content : {
       top                   : '25%',
@@ -32,70 +22,31 @@ import Loginscreen from '../components/Loginscreen'
   constructor(props){
     super(props);
     this.state={
-      // notes: [],
-      // editingNoteId: null,
-      // notification: '',
-      modalIsOpen: false
+      modalIsOpen: false,
+      oldPassword: '',
+      newPassword: ''
     }
-    // this.newNote = this.newNote.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
+    this.changePassword = this.changePassword.bind(this)
     this.openModal = this.openModal.bind(this);
-    // this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    console.log(this)
+    console.log(this.props)
   }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   openModal() {
     this.setState({modalIsOpen: true});
+    console.log(this)
   }
-
-  // afterOpenModal() {
-  //   // references are now sync'd and can be accessed.
-  //   this.subtitle.style.color = '#f00';
-  // }
 
   closeModal() {
     this.setState({modalIsOpen: false});
   }
 
-  
-
-
-      // axios({
-      
-      //   method: 'get',
-      //   url: 'http://localhost:4741/notes',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': 'Token token=' + this.props.credentials.state.token
-      //   }
-      // })    
-      
-        // .then(data => {
-        //   this.setState(prevState => {
-        //     let nextState = Object.assign({}, prevState)
-        //     nextState.notes.unshift(data.note) 
-        //     return nextState
-        //   })
-        // })
-
-    // console.log(data)
-    // console.log(this)
-    // console.log(this.props)
-    // .then((data) => {
-    //   this.setState(prevState => {
-    //     let nextState = Object.assign({}, prevState)
-    //     nextState.notes.unshift(data.note) 
-    //     return nextState
-    //   })
-    // })
-
-      // .then(data => {
-      //   this.setState({
-      //     notes: data.data.notes
-      //   })
-      // })
-
-  // }
   handleSignOut() {
     let self = this;
     axios({
@@ -120,8 +71,9 @@ import Loginscreen from '../components/Loginscreen'
     })
   }
   
-  changePassword() {
-    // let self = this;
+  changePassword(e) {
+    e.preventDefault();
+    let self = this;
     axios({
       method: 'patch',
       url: 'http://localhost:4741/change-password',
@@ -129,12 +81,12 @@ import Loginscreen from '../components/Loginscreen'
         'Content-Type': 'application/json',
         'Authorization': 'Token token=' + this.props.credentials.state.token
       },
-      // data: {
-      //   "passwords": {
-      //     "old": "",
-      //     "new": ""
-      //   }
-      // }
+      data: {
+        "passwords": {
+          "old": self.state.oldPassword,
+          "new": self.state.newPassword
+        }
+      }
     })
   }
   
@@ -155,28 +107,15 @@ import Loginscreen from '../components/Loginscreen'
           <span role="img" aria-labelledby="delete" className="close" onClick={this.closeModal}>✖️</span>
           <h2>Change Password</h2>
           <br/>
-          <form id="change-password-form">
-            <input type="password" name="passwords[old]" placeholder="Old Password" />
+          <form>
+            <input type="password" name="oldPassword" placeholder="Old Password"  value={this.state.oldPassword} onChange={this.handleChange}/>
             <br />
-            <input type="password" name="passwords[new]" placeholder="New Password" />
+            <input type="password" name="newPassword" placeholder="New Password"  value={this.state.newPassword} onChange={this.handleChange}/>
             <br />
-            <button type="submit" class="btn btn-default">Change Password</button>
+            <button type="submit" onClick={this.changePassword}>Change Password</button>
           </form>
         </Modal>
       </div>
     );
   }
 }
-
-
-//   return (
-//     <div className="Header-div"
-//          style={styles}>
-//         <p>Header</p>
-//         <button id="newNote">New note</button>
-//     </div>
-//   )
-// }
-
-
-// export default Header

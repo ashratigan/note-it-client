@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {UploadScreen} from './UploadScreen.js';
 import {Board} from './Board.js'
+import { apiUrl } from './Config.js'
 import '../styles/Login.css'
 // import {Note} from './Note.js'
 // import {Header} from './Header.js'
@@ -21,10 +22,10 @@ class Login extends Component {
 
   handleClick(event){
     var self = this;
-    var apiBaseUrl = "http://localhost:4741/";
+    // var apiBaseUrl = "http://localhost:4741/";
     // var self = this;
     var payload = {
-        url: apiBaseUrl+'sign-in',
+        url: apiUrl+'/sign-in',
         method: 'POST',
         data: {
             credentials: {

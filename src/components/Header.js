@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import '../styles/Header.css'
 import Loginscreen from '../components/Loginscreen'
+import { apiUrl } from './Config.js'
+import '../styles/Header.css'
 
   const customStyles = {
     content : {
@@ -55,7 +56,7 @@ import Loginscreen from '../components/Loginscreen'
     let self = this;
     axios({
       method: 'delete',
-      url: 'http://localhost:4741/sign-out/',
+      url: apiUrl + '/sign-out/',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Token token=' + this.props.credentials.state.token
@@ -80,7 +81,7 @@ import Loginscreen from '../components/Loginscreen'
     let self = this;
     axios({
       method: 'patch',
-      url: 'http://localhost:4741/change-password',
+      url: apiUrl + '/change-password',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Token token=' + this.props.credentials.state.token

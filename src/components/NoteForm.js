@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { apiUrl } from './Config.js'
 import '../styles/NoteForm.css'
+
 class NoteForm extends Component {
 	constructor(props) {
 		super(props)
@@ -28,7 +30,7 @@ class NoteForm extends Component {
     console.log(this.props)
     axios({
         method: 'patch',
-        url: `http://localhost:4741/notes/${this.props.note.id}`,
+        url: apiUrl + `/notes/${this.props.note.id}`,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Token token=' + this.props.credentials.state.token

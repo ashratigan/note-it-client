@@ -6,7 +6,9 @@ import { Header } from './Header.js'
 import axios from 'axios';
 import update from 'immutability-helper'
 import NoteForm from './NoteForm.js'
+import { apiUrl } from './Config.js'
 import '../styles/Board.css'
+
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import Login from './Login';
@@ -51,7 +53,7 @@ getClickHandler = (onClick, onDblClick, delay) => {
   getNotes = () => {
     axios({
       method: 'get',
-      url: 'http://localhost:4741/notes',
+      url: apiUrl + '/notes',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Token token=' + this.props.credentials.state.token
@@ -104,7 +106,7 @@ getClickHandler = (onClick, onDblClick, delay) => {
   newNote() {
     axios({
       method: 'post',
-      url: 'http://localhost:4741/notes',
+      url: apiUrl +'/notes',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Token token=' + this.props.credentials.state.token
@@ -142,7 +144,7 @@ getClickHandler = (onClick, onDblClick, delay) => {
     // let self = this;
     axios({
       method: 'delete',
-      url: `http://localhost:4741/notes/${id}`,
+      url: apiUrl + `/notes/${id}`,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Token token=' + this.props.credentials.state.token

@@ -25,12 +25,19 @@ export class  Board extends Component {
         poem: '',
         notes: [],
         editingNoteId: null,
+        isHidden: true
         // notification: ''
     }
     this.newNote = this.newNote.bind(this)
     this.updateNote = this.updateNote.bind(this)
     this.deleteNote = this.deleteNote.bind(this)
     
+  }
+
+  toggleHidden () {
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
   }
 
 
@@ -171,7 +178,7 @@ getClickHandler = (onClick, onDblClick, delay) => {
       <div className="NoteScreen">
         <div className="Header">
           <div className="buttonNotes" id="newNote" onClick={this.newNote}>New note</div>
-          <div className="buttonNotes">Need Some Inspo?</div>
+          <div className="buttonNotes" onClick={this.toggleHidden.bind(this)}>Need Some Inspo?</div>
           <Header 
             appContext={this.props.appContext}
             credentials={this.props.credentials}
@@ -179,10 +186,11 @@ getClickHandler = (onClick, onDblClick, delay) => {
         </div>
           
         <div id="inspo">
+        {!this.state.isHidden && 
           <Info quote={this.state.quote}
                 quoteAuthor={this.state.quoteAuthor}
                 prompt={this.state.prompt}
-                numFact={this.state.numFact}/>
+                numFact={this.state.numFact}/>}
         </div>
         
         <div className="Board">

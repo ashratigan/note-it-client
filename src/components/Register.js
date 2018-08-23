@@ -13,7 +13,7 @@ class Register extends Component {
     this.state={
     //   first_name:'',
     //   last_name:'',
-      email:'',
+      username:'',
       password:'',
       password_confirmation: '',
       userFeedback: ''
@@ -44,7 +44,7 @@ class Register extends Component {
     console.log(payload)
     axios(payload)
    .then(function (response) {
-     self.setState({userFeedback: 'Registration successful! Login to get started!', email: '', password: '', password_confirmation: ''})
+     self.setState({userFeedback: 'Registration successful! Login to get started!', username: '', password: '', password_confirmation: ''})
      console.log(response);
      if(response.status === 200){
       //  console.log("registration successfull");
@@ -62,7 +62,7 @@ class Register extends Component {
      console.log(error);
      console.log(self)
      console.log(self.state)
-     self.setState({userFeedback: 'Username is already taken or your passwords are different', email: '', password: '', password_confirmation: ''})
+     self.setState({userFeedback: 'Username is already taken or your passwords are different', username: '', password: '', password_confirmation: ''})
    });
   }
 
@@ -76,16 +76,16 @@ class Register extends Component {
              <h1>Note It</h1>
            </div>
            <TextField
-             hintText="Enter your Email"
+             hintText="Enter your Username"
              type="email"
-             name="credentials[email]"
-             floatingLabelText="Email"
-             onChange = {(event,newValue) => this.setState({email:newValue})}
+             value={this.state.username}
+             floatingLabelText="username"
+             onChange = {(event,newValue) => this.setState({username:newValue})}
              />
            <br/>
            <TextField
              type = "password"
-             name="credentials[password]"
+             value={this.state.password}
              hintText="Enter your Password"
              floatingLabelText="Password"
              onChange = {(event,newValue) => this.setState({password:newValue})}
@@ -93,14 +93,14 @@ class Register extends Component {
              <br />
            <TextField
              type = "password"
-             name="credentials[password_confirmation]"
+             value={this.state.password_confirmation}
              hintText="Enter your Password"
              floatingLabelText="Password"
              onChange = {(event,newValue) => this.setState({password_confirmation:newValue})}
              />
            <br/>
            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-           <div><h4>{this.state.userFeedback}</h4></div>
+           <div><h2>{this.state.userFeedback}</h2></div>
           </div>
          </MuiThemeProvider>
       </div>

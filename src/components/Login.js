@@ -43,8 +43,10 @@ class Login extends Component {
     axios(payload)
     // axios.post(apiBaseUrl+'sign-in', payload)
       .then(function (response) {
-        console.log(response);
-        console.log(response.data.user.token);
+        // console.log(response);
+        // console.log(response.data.user.token);
+        console.log(self.props.appContext)
+        console.log(self.props.appContext.state)
         if(response.status === 200){
           console.log("Login successfull");
           self.setState({
@@ -118,22 +120,25 @@ class Login extends Component {
              <h1>Note It</h1>
            </div>
            <TextField
-             hintText="Enter your Email"
-             name="credentials[email]"
+             hintText="Enter your Username"
              floatingLabelText="Username"
+             value={this.state.username}
              onChange = {(event,newValue) => this.setState({username:newValue})}
              />
            <br/>
              <TextField
                type="password"
-               name="credentials[passwrd]"
                hintText="Enter your Password"
                floatingLabelText="Password"
+               value={this.state.password}
                onChange = {(event,newValue) => this.setState({password:newValue})}
                />
              <br/>
              <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)}/>
-            <div><h4>{this.state.userFeedback}</h4></div>
+            <div>
+              <br/>
+              <h2>{this.state.userFeedback}</h2>
+            </div>
          </div>
          </MuiThemeProvider>
       </div>

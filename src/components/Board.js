@@ -73,7 +73,7 @@ getClickHandler = (onClick, onDblClick, delay) => {
     })
   }
 
-  componentDidMount() {
+  getQuote = () => {
     axios.get('https://talaikis.com/api/quotes/random/')
       .then(data => {
         const quoteData = data.data
@@ -82,17 +82,9 @@ getClickHandler = (onClick, onDblClick, delay) => {
           quoteAuthor: quoteData.author
         })
       })
+  }
 
-    axios.get('https://ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location')
-      .then(data => {
-        // console.log(data)
-        // console.log(data.data.english)
-        const prompt = data.data.english
-        this.setState({
-          prompt: prompt
-        })
-      })
-
+  getFact = () => {
     axios.get('http://numbersapi.com/random/year?json')
       .then(data => {
         // console.log(data.data.text)
@@ -102,11 +94,24 @@ getClickHandler = (onClick, onDblClick, delay) => {
           numFact: numFact
         })
       })
+  }
 
-      // console.log(this)
-      // console.log(this.props.credentials.state.token)
-      // console.log(this.state)
-      // console.log(this.props.credentials)
+  getPropmt = () => {
+    axios.get('https://ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location')
+    .then(data => {
+      // console.log(data)
+      // console.log(data.data.english)
+      const prompt = data.data.english
+      this.setState({
+        prompt: prompt
+      })
+    })
+  }
+
+  componentDidMount() {
+    this.getQuote()
+    this.getFact()
+    this.getPropmt()
     this.getNotes()
   }
 

@@ -15,7 +15,8 @@ class Register extends Component {
     //   last_name:'',
       email:'',
       password:'',
-      password_confirmation: ''
+      password_confirmation: '',
+      userFeedback: ''
     }
   }
 
@@ -43,6 +44,7 @@ class Register extends Component {
     console.log(payload)
     axios(payload)
    .then(function (response) {
+     self.setState({userFeedback: 'Registration successful! Login to get started!', email: '', password: '', password_confirmation: ''})
      console.log(response);
      if(response.status === 200){
       //  console.log("registration successfull");
@@ -58,6 +60,9 @@ class Register extends Component {
    })
    .catch(function (error) {
      console.log(error);
+     console.log(self)
+     console.log(self.state)
+     self.setState({userFeedback: 'Username is already taken or your passwords are different', email: '', password: '', password_confirmation: ''})
    });
   }
 
@@ -66,9 +71,10 @@ class Register extends Component {
       <div>
         <MuiThemeProvider>
           <div>
-          <AppBar
-             title="Register"
-           />
+          <AppBar/>
+           <div className="title">
+             <h1>Note It</h1>
+           </div>
            <TextField
              hintText="Enter your Email"
              type="email"
@@ -94,6 +100,7 @@ class Register extends Component {
              />
            <br/>
            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+           <div><h4>{this.state.userFeedback}</h4></div>
           </div>
          </MuiThemeProvider>
       </div>

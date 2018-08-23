@@ -15,13 +15,15 @@ class Login extends Component {
   constructor(props){
     super(props);
     this.state={
+      userFeedback:'',
       username:'',
       password:''
     }
   }
 
-  handleClick(event){
+  handleClick = (event) => {
     var self = this;
+    console.log(this)
     // var apiBaseUrl = "http://localhost:4741/";
     // var self = this;
     var payload = {
@@ -84,16 +86,22 @@ class Login extends Component {
         //   })
 
 
-        } else if(response.status === 204){
-          console.log("Username password do not match");
-          alert("username password do not match")
-        } else{
-          console.log("Username does not exists");
-          alert("Username does not exist");
+        // } else if(response.status === 404){
+        //   this.setState(this.loginmessage = 'Incorrect username or password')
+        //   console.log("Username password do not match");
+        //   alert("username password do not match")
+        // } else{
+        //   console.log("Username does not exists");
+        //   alert("Username does not exist");
         }
       })
       .catch(function (error) {
         console.log(error);
+        self.setState({userFeedback: 'Incorrect username or password', password: '', username: ''})
+        console.log(self)
+        // self.refs.form.reset();
+        // console.log(self.state)
+        // console.log(self.state.loginmessage)
       });
   }
 
@@ -125,6 +133,7 @@ class Login extends Component {
                />
              <br/>
              <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)}/>
+            <div><h4>{this.state.userFeedback}</h4></div>
          </div>
          </MuiThemeProvider>
       </div>

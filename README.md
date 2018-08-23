@@ -5,6 +5,8 @@ This is the front-end for Note It, my capstone full-stack project as part of GA'
 
 ## Related links
 - [Note It Back End Repository](https://github.com/ashratigan/note-it-api "Note It Back End")
+- [Note It Deployed Site](https://note-it-client.herokuapp.com/ "Note It Deployed Site")
+- [Note It Deployed Back End](https://note-it-api.herokuapp.com/ "Note It Deployed Back End")
 
 
 ## Technologies used
@@ -12,7 +14,11 @@ This is the front-end for Note It, my capstone full-stack project as part of GA'
 - Axios
 
 ## Features and Additions
-- Coming soon!
+- Notes can be dragged around the border
+- Inspo button accesses third party APIs to display a random quote, a random trivia question and answer, and a random writing prompt to help a user come up with ideas
+
+## In Progress
+- Working on creating a way to save location of notes location, so user can sign out an back in, and the notes will be in the same place. 
 
 ## User Stories
 - As a user, I can sign up
@@ -23,6 +29,7 @@ This is the front-end for Note It, my capstone full-stack project as part of GA'
 - As a signed in user, I can update a note
 - As a signed in user, I can see my notes
 - As a signed in user, I can delete a note
+- As a signed in user, I can click the inspo button to see some inspiration
 
 ## Wireframes
 ![Note It Wireframe](https://i.imgur.com/uMTYrvl.jpg)

@@ -46,6 +46,9 @@ import Loginscreen from '../components/Loginscreen'
 
   closeModal() {
     this.setState({modalIsOpen: false});
+    this.setState({passowrdMessage: ''})
+    // this.setState({oldPassowrd: ''})
+    // this.setState({newPassowrd: ''})
   }
 
   handleSignOut() {
@@ -91,14 +94,14 @@ import Loginscreen from '../components/Loginscreen'
     })
     .then(response => {
       console.log(response)
-      this.state.passowrdMessage = "Password changed successfully"
-      console.log(this.state.passowrdMessage)
-      // this.props.updateNote(response.data)
-      // this.props.getNotes()
-      // this.props.resetEdit()
+      this.setState({passowrdMessage: "Password changed successfully", oldPassword: '', newPassword: ''})
+      this.refs.form.reset();
     })
-    .catch(error => console.log(error, this.props.credentials.state.token))
-    this.state.passowrdMessage = "Something went wrong!"
+    .catch(error => {
+      console.log(error, this.props.credentials.state.token)
+      this.setState({passowrdMessage: "Something went wrong! Is that your old password?", oldPassword: '', newPassword: ''})
+      this.refs.form.reset();
+    })
   }
   
   
@@ -120,12 +123,12 @@ import Loginscreen from '../components/Loginscreen'
           <h2>Change Password</h2>
           <div className="passowrdMessage">{this.state.passowrdMessage}</div>
           <br/>
-          <form>
+          <form onSubmit={this.changePassword} ref="form">
             <input type="password" name="oldPassword" placeholder="Old Password"  value={this.state.oldPassword} onChange={this.handleChange}/>
             <br />
             <input type="password" name="newPassword" placeholder="New Password"  value={this.state.newPassword} onChange={this.handleChange}/>
             <br />
-            <button type="submit" onClick={this.changePassword}>Change Password</button>
+            <button type="submit">Change Password</button>
           </form>
         </Modal>
       </div>

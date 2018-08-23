@@ -6,7 +6,7 @@ import '../styles/Note.css'
 
 export class  Note extends Component {
 
-  handleClick = () => { this.props.onClick(this.props.note.id) }
+  handleClick = () => { this.props.onDoubleClick(this.props.note.id) }
 
 	handleDelete = () => { this.props.onDelete(this.props.note.id) }
 
@@ -22,8 +22,8 @@ export class  Note extends Component {
         onStop={this.handleStop}>
         <div className="Note-div">
           <span className="delete" role="img" aria-labelledby="delete" onClick={this.handleDelete}>✖️</span>
-          <h4 onClick={this.handleClick}>{this.props.note.title}</h4>
-		      <p className="content"onClick={this.handleClick}>{this.props.note.content}</p>
+          <h4 onDoubleClick={this.handleClick}>{this.props.note.title}</h4>
+		      <p className="content"onDoubleClick={this.handleClick}>{this.props.note.content}</p>
       </div>
       </Draggable>
 

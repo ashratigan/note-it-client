@@ -31,6 +31,23 @@ export class  Board extends Component {
     
   }
 
+
+getClickHandler = (onClick, onDblClick, delay) => {
+  var timeoutID = null;
+  delay = delay || 250;
+  return function (event) {
+      if (!timeoutID) {
+          timeoutID = setTimeout(function () {
+              onClick(event);
+              timeoutID = null
+          }, delay);
+      } else {
+          timeoutID = clearTimeout(timeoutID);
+          onDblClick(event);
+      }
+  };
+}
+
   getNotes = () => {
     axios({
       method: 'get',
@@ -174,7 +191,7 @@ export class  Board extends Component {
                       appContext={this.props.appContext}
                  credentials={this.props.credentials}/>)
             } else {
-              return (<Note note={note} key={note.id} onClick={this.enableEditing}
+              return (<Note note={note} key={note.id} onDoubleClick={this.enableEditing}
                       onDelete={this.deleteNote} />)
             }
           })}

@@ -1,6 +1,8 @@
 import React from 'react'
 import '../styles/Info.css'
 
+
+
 const Header = props => {
 // console.log(props)
   return (
@@ -11,10 +13,13 @@ const Header = props => {
           <p className="QuoteText">{props.quote}</p>
           <span className="QuoteAuthor">{`– ${props.quoteAuthor}`}</span>
         </div>
+        <br/>
         <div className="NumFact">
-          <h2>Random Fact</h2>
-          <p>{props.numFact}</p>
+          <h2>Random Trivia</h2>
+          <p>{props.question}</p>
+          <span>- {props.answer}</span>
         </div>
+        <br/>
         <div className="Prompt">
           <h2>Writing Prompt</h2>
           <p>{props.prompt}</p>

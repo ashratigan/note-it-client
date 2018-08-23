@@ -21,12 +21,11 @@ export class  Board extends Component {
         quote: '',
         quoteAuthor: '',
         prompt:'',
-        numFact: '',
-        poem: '',
+        question: '',
+        answer: '',
         notes: [],
         editingNoteId: null,
         isHidden: true
-        // notification: ''
     }
     this.newNote = this.newNote.bind(this)
     this.updateNote = this.updateNote.bind(this)
@@ -85,13 +84,13 @@ getClickHandler = (onClick, onDblClick, delay) => {
   }
 
   getFact = () => {
-    axios.get('http://numbersapi.com/random/year?json')
+    axios.get('https://opentdb.com/api.php?amount=1&category=22&difficulty=hard')
       .then(data => {
-        // console.log(data.data.text)
-        // console.log(data.data)
-        const numFact = data.data.text
+        const question = data.data.results[0].question
+        const answer = data.data.results[0].correct_answer
         this.setState({
-          numFact: numFact
+          question: question,
+          answer: answer
         })
       })
   }
@@ -195,7 +194,8 @@ getClickHandler = (onClick, onDblClick, delay) => {
           <Info quote={this.state.quote}
                 quoteAuthor={this.state.quoteAuthor}
                 prompt={this.state.prompt}
-                numFact={this.state.numFact}/>}
+                question={this.state.question}
+                answer={this.state.answer}/>}
         </div>
         
         <div className="Board">

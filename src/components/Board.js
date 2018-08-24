@@ -148,14 +148,18 @@ export class  Board extends Component {
     return (
       <div className="NoteScreen">
         <div className="Header">
-          <div className="buttonNotes" id="newNote" onClick={this.newNote}>New note</div>
-          <div className="buttonNotes" onClick={this.toggleHidden.bind(this)}>Need Some Inspo?</div>
+          <div className="buttonNotes" id="newNote" onClick={this.newNote}>New Note</div>
+          <div className="buttonNotes" onClick={this.toggleHidden.bind(this)}>Need Some Inspiration?</div>
           <Header 
             appContext={this.props.appContext}
             credentials={this.props.credentials}
           />
         </div>
-          
+        <div className="Instructions">
+          <h3>Let's get ready to brainstorm!</h3> 
+          <h4>Click New Note to make a new note. Single click allows you to drag notes around the screen, while Double click allows you to edit notes.</h4>
+          <h4>Edits to notes are automatically saved once you click somewhere else on the screen</h4>
+        </div>
         <div id="inspo">
         {!this.state.isHidden && 
           <Info quote={this.state.quote}
@@ -164,7 +168,6 @@ export class  Board extends Component {
                 question={this.state.question}
                 answer={this.state.answer}/>}
         </div>
-        
         <div className="Board">
           {this.state.notes.map((note) => {
             if(this.state.editingNoteId === note.id) {
@@ -182,6 +185,7 @@ export class  Board extends Component {
             }
           })}
         </div>
+        {/* <div><p>Keep an eye on the notes. They like to change places</p></div> */}
       </div>
     )
   }

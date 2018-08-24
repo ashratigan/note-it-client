@@ -13,8 +13,44 @@
     /* width: 50px; */
     color: white;
     margin: 10px 0 0 50px;
+    font-size: 20px;
 }
 
 #inspo {
     margin: 30px 50px 0 50px;
+}
+
+.Instructions {
+    /* text-align: left; */
+    margin: 30px 50px 0 50px;
+}
+
+.Instructions > h3 {
+    text-transform: uppercase;
+    font-size: 60px;
+    font-weight: 300;
+    /* margin-bottom: 0; */
+}
+
+.Instructions > h4 {
+    font-size: 28px;
+    font-weight: 300;
+    /* margin-top: 0; */
+}
+
+@media only screen and (max-width: 600px) {
+  .button {
+    font-size: 14px;
+    margin: 5px;
+  }
+  .buttonNotes {
+    font-size: 14px;
+    margin: 12px 5px 0 5px;
+  }
+  .Instructions > h3 { 
+      font-size: 48px;
+  }
+  .Instructions > h4 { 
+    font-size: 18px;
+}
 }

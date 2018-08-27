@@ -18,7 +18,7 @@ This is the front-end for Note It, my capstone full-stack project as part of GA'
 - Inspo button accesses third party APIs to display a random quote, a random trivia question and answer, and a random writing prompt to help a user come up with ideas
 
 ## In Progress
-- Working on creating a way to save location of notes location, so user can sign out and back in, and the notes will be in the same place
+- Working on creating a way to save location of notes, so user can sign out and back in, and the notes will be in the same place
 
 ## User Stories
 - As a user, I can sign up

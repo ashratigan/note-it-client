@@ -77,7 +77,7 @@ class Login extends Component {
       <div>
         <MuiThemeProvider>
           <div>
-          <AppBar/>
+          <AppBar title="Don't want to sign up? Use Test as the username and password"/>
            <div className="title">
              <h1>Note It</h1>
            </div>

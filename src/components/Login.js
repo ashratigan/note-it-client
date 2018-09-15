@@ -44,7 +44,8 @@ class Login extends Component {
           
           let uploadScreen=[]
           uploadScreen.push(
-            <UploadScreen
+            // set unique key
+            <UploadScreen key="uploadScreen"
               credentials={self}
               appContext={self.props.appContext}
             />)

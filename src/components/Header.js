@@ -5,18 +5,20 @@ import Loginscreen from '../components/Loginscreen'
 import { apiUrl } from './Config.js'
 import '../styles/Header.css'
 
-  const customStyles = {
-    content : {
-      top                   : '25%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)',
-      textAlign : 'center',
-      width : '300px'
-    }
+const customStyles = {
+  content : {
+    top                   : '25%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    textAlign : 'center',
+    width : '300px'
   }
+}
+
+Modal.setAppElement('#root')
 
 export class Header extends Component {
   constructor(props){
@@ -97,6 +99,8 @@ export class Header extends Component {
       this.refs.form.reset()
     })
   }
+
+
   
   render() {
     return (

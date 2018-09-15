@@ -19,7 +19,8 @@ class Loginscreen extends Component {
   }
   componentWillMount(){
     let loginscreen=[]
-    loginscreen.push(<Login parentContext={this} appContext={this.props.parentContext}/>)
+    // added unique key to login
+    loginscreen.push(<Login key="login" parentContext={this} appContext={this.props.parentContext}/>)
     let loginmessage = "Not registered yet, Register Now"
     this.setState({loginscreen:loginscreen, loginmessage:loginmessage})
   }
@@ -28,7 +29,8 @@ class Loginscreen extends Component {
     let loginmessage
     if(this.state.isLogin){
       let loginscreen=[]
-      loginscreen.push(<Register parentContext={this} appContext={this.props.parentContext}/>)
+      // added unique key to register
+      loginscreen.push(<Register key="register" parentContext={this} appContext={this.props.parentContext}/>)
       loginmessage = "Already registered. Go to Login"
       this.setState({
         loginscreen:loginscreen,
